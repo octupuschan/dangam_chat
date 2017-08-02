@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  	<head>
+	    <meta charset="utf-8">
+	    <title>Simplify Admin</title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <meta name="description" content="">
+	    <meta name="author" content="">
+
+	    <!-- Bootstrap core CSS -->
+	    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		
+		<!-- Font Awesome -->
+		<link href="css/font-awesome.min.css" rel="stylesheet">
+
+		<!-- ionicons -->
+		<link href="css/ionicons.min.css" rel="stylesheet">
+		
+		<!-- Morris -->
+		<link href="css/morris.css" rel="stylesheet"/>	
+
+		<!-- Datepicker -->
+		<link href="css/datepicker.css" rel="stylesheet"/>	
+
+		<!-- Animate -->
+		<link href="css/animate.min.css" rel="stylesheet">
+
+		<!-- Owl Carousel -->
+		<link href="css/owl.carousel.min.css" rel="stylesheet">
+		<link href="css/owl.theme.default.min.css" rel="stylesheet">
+
+		<!-- Simplify -->
+		<link href="css/simplify.min.css" rel="stylesheet">
+	
+  	</head>
+
+	<body class="overflow-hidden">
+		<!-- Main Wrapper -->
+		<div class="wrapper preload">
+ 
+    		<!-- Right Sidebar -->
+    		<!--<div class="sidebar-right">
+    		</div>
+    		<!-- End of Right Sidebar -->
+ 
+    		<!-- Top Navigation -->
+    		<!--<div class="top-nav">
+    		</div>
+    		<!-- End of Top Navigation -->
+ 
+    		<!-- Left Sidebar Menu -->
+			<div class="sidebar-menu">
+    		</div>
+			<!-- End of Sidebar Menu -->
+	
+			<!-- Main Container -->
+			<div class="main-container">
+            
+            	<!-- 단골 십계명 ---->
+				<div class="smart-widget widget-dark">
+					<div class="smart-widget-header">
+						단골 십계명
+						<span class="smart-widget-option">
+							<span class="refresh-icon-animated">
+								<i class="fa fa-circle-o-notch fa-spin"></i>
+							</span>
+							<a href="#" class="widget-collapse-option" data-toggle="collapse">
+								<i class="fa fa-chevron-up"></i>
+							</a>
+							<a href="#" class="widget-refresh-option">
+								<i class="fa fa-refresh"></i>
+							</a>
+							<a href="#" class="widget-remove-option">
+								<i class="fa fa-times"></i>
+							</a>
+						</span>
+					</div><!--./smart-widget-header-->
+					<div class="smart-widget-inner">
+						<div class="smart-widget-body">
+							<button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="top" data-content="손님은 왕이고 당신은 황제다 대접 받기위해서는 대접해라.">
+								1. 손님은 왕이다!
+							</button>
+                            <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="top" data-content="당신에게 더욱 가까운 사람을 대접하면 먼 사람들고 가까워 진다.">
+								2. 가까울수록 더욱 조심하라!
+							</button>
+                            <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="top" data-content="신중하게 준비하고 조사하고 결정 이후에는 단호하게 진행해라.">
+								3. 신중하되 단호해라!
+							</button>
+						</div>
+					</div><!-- ./smart-widget-inner -->
+				</div><!-- ./smart-widget -->
+                <!---./단골 십계명 --->
+                
+                <!-- 단골 TIP! ---->
+				<div class="smart-widget widget-red">
+					<div class="smart-widget-header">
+						단골 TIP!
+						<span class="smart-widget-option">
+							<span class="refresh-icon-animated">
+								<i class="fa fa-circle-o-notch fa-spin"></i>
+							</span>
+							<a href="#" class="widget-collapse-option" data-toggle="collapse">
+								<i class="fa fa-chevron-up"></i>
+							</a>
+							<a href="#" class="widget-refresh-option">
+								<i class="fa fa-refresh"></i>
+							</a>
+							<a href="#" class="widget-remove-option">
+								<i class="fa fa-times"></i>
+							</a>
+						</span>
+					</div>
+                    
+					<div class="smart-widget-inner">
+						<div class="smart-widget-body">
+							
+                            <div class="row">
+								
+								<div class="col-lg-6">
+									<div class="list-group">
+									  	<a href="#" class="list-group-item active">
+									    	Cras justo odio
+									  	</a>
+									  	<a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+									  	<a href="#" class="list-group-item">Morbi leo risus</a>
+									  	<a href="#" class="list-group-item">Porta ac consectetur ac</a>
+									  	<a href="#" class="list-group-item disabled">Vestibulum at eros</a>
+									</div>
+								</div><!-- ./col -->
+							</div><!-- ./row -->
+
+						</div><!-- ./smart-widget-body -->
+					</div><!-- ./smart-widget-inner -->
+				</div><!-- ./smart-widget -->
+				<!--./단골 TIP! ---->
+                	
+			</div><!--./Main Container-->
+            
+			<!-- End of Main Container -->
+            
+            <!-- Delete Widget Confirmation -->
+			<div class="custom-popup delete-widget-popup delete-confirmation-popup" id="deleteWidgetConfirm">
+				<div class="popup-header text-center">
+					<span class="fa-stack fa-4x">
+					  <i class="fa fa-circle fa-stack-2x"></i>
+					  <i class="fa fa-lock fa-stack-1x fa-inverse"></i>
+					</span>
+				</div>
+				<div class="popup-body text-center">
+					<h5>Are you sure to delete this widget?</h5>
+					<strong class="block m-top-xs"><i class="fa fa-exclamation-circle m-right-xs text-danger"></i>This action cannot be undone</strong>
+				
+					<div class="text-center m-top-lg">
+						<a class="btn btn-success m-right-sm remove-widget-btn">Delete</a>
+						<a class="btn btn-default deleteWidgetConfirm_close">Cancel</a>
+					</div>
+				</div>
+			</div>
+            
+			<!-- Footer -->
+			<footer class="footer">
+            	<span class="footer-brand">
+					<strong class="text-danger">단골+</strong> 가맹점
+				</span>
+				<p class="no-margin">
+					&copy; 2015 <strong>단골 PLUS</strong>. ALL Rights Reserved. 
+				</p>
+			</footer>
+    		<!-- End of Footer -->
+            
+        </div>
+		<!-- End of Main Wrapper -->
+
+            
+	    <!-- Le javascript
+	    ================================================== -->
+	    <!-- Placed at the end of the document so the pages load faster -->
+		
+		<!-- Jquery -->
+		<script src="js/jquery-1.11.1.min.js"></script>
+		
+		<!-- Bootstrap -->
+	    <script src="bootstrap/js/bootstrap.min.js"></script>
+	  
+		<!-- Flot -->
+		<script src='js/jquery.flot.min.js'></script>
+
+		<!-- Slimscroll -->
+		<script src='js/jquery.slimscroll.min.js'></script>
+		
+		<!-- Morris -->
+		<script src='js/rapheal.min.js'></script>	
+		<script src='js/morris.min.js'></script>	
+
+		<!-- Datepicker -->
+		<script src='js/uncompressed/datepicker.js'></script>
+
+		<!-- Sparkline -->
+		<script src='js/sparkline.min.js'></script>
+
+		<!-- Skycons -->
+		<script src='js/uncompressed/skycons.js'></script>
+		
+		<!-- Popup Overlay -->
+		<script src='js/jquery.popupoverlay.min.js'></script>
+
+		<!-- Easy Pie Chart -->
+		<script src='js/jquery.easypiechart.min.js'></script>
+
+		<!-- Sortable -->
+		<script src='js/uncompressed/jquery.sortable.js'></script>
+
+		<!-- Owl Carousel -->
+		<script src='js/owl.carousel.min.js'></script>
+
+		<!-- Modernizr -->
+		<script src='js/modernizr.min.js'></script>
+		
+		<!-- Simplify -->
+		<script src="js/simplify/simplify.js"></script>
+		<script src="js/simplify/simplify_dashboard.js"></script>
+        
+        <script>
+			$(function()	{
+				//Delete Widget Confirmation
+				$('#deleteWidgetConfirm').popup({
+					vertical: 'top',
+					pagecontainer: '.container',
+					transition: 'all 0.3s'
+				});
+
+	
+			});
+		</script>
+	
+  	</body>
+</html>

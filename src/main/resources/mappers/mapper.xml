@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dangam.namu.api.mapper.HomeMapper">
+
+<!-- id = 메소드 이름과 같게 -->
+<select id="getBook" resultType="Product">
+	select price
+	from tbl_product
+	where bookName = #{bookName}
+</select> 
+
+<select id="getUid" resultType="Code">
+	select codeName
+	from tbl_code
+	where uCodeId is null
+</select>
+
+<select id="getId" resultType="Code">
+	select codeName
+	from tbl_code
+	where uCodeId is not null
+</select>
+
+<select id="getBookByAge" resultType="Product">
+	select *
+	from tbl_product
+	where <![CDATA[minAge<#{age}]]> and <![CDATA[maxAge>#{age}]]>
+</select>
+
+<select id="getIdByUid" resultType="Code">
+	select *
+	from tbl_code
+	where uCodeId = #{uCodeId}
+</select>
+
+<!--  
+<mapper namespace="user">
+<select id="getBookById" parameterType="hashmap" resultType="Product">
+	select *
+	from tbl_product
+	where bookCode = #{bookCode} and <![CDATA[minAge<#{user.age}]]> and <![CDATA[maxAge>#{user.age}]]>
+</select>
+-->
+
+</mapper>

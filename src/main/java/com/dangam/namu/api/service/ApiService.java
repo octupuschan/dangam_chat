@@ -1,0 +1,26 @@
+package com.dangam.namu.api.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.dangam.namu.api.dao.ApiDao;
+import com.dangam.namu.api.dto.Code;
+import com.dangam.namu.api.dto.Product;
+
+@Service
+public class ApiService {
+	
+	@Autowired
+	private ApiDao apiDao;
+	
+	public List<Product> getBookByAge(Integer age) throws Exception {
+		return apiDao.getBookByAge(age);
+    }
+	
+	public List<Code> getIdByUid(String uid) throws Exception {
+		return apiDao.getIdByUid(uid);
+	}
+
+}

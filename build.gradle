@@ -1,0 +1,134 @@
+import java.text.SimpleDateFormat
+import java.util.Date
+
+buildscript {
+    repositories {
+        //Required repos
+        mavenCentral()
+        maven { url "http://repo.spring.io/snapshot" }
+        maven { url "http://repo.spring.io/milestone" }
+    }
+    dependencies {
+        //Required dependency for spring-boot plugin
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.4.0.BUILD-SNAPSHOT'
+        //classpath 'org.springframework:springloaded:1.2.0.RELEASE'
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+apply plugin: 'war'
+
+sourceSets {
+	main {
+		resources {
+			srcDirs = ['src/main/java', 'src/main/resources']
+		}
+	}
+}
+
+jar {
+	baseName = 'namudemo'
+	version =  '0.0.1'
+	into ('META-INF/resources/WEB-INF') {
+    	from ("src/main/webapp/WEB-INF") {
+    		include('jsp/**/*.jsp')
+    		include('resources/**')
+    	}
+    }
+
+	from (sourceSets.main.java.srcDirs) {
+    	include('**/repo/*Mapper.xml')
+    }
+}
+
+
+war {
+	from (sourceSets.main.java.srcDirs) {
+   	include('**/repo/*Mapper.xml')
+   	into 'WEB-INF/classes'
+    }
+}
+
+
+test {
+	exclude '**/seleniumtest/**'
+	exclude '**/_*.*'
+}
+
+repositories {
+    mavenCentral()
+    maven { url "http://repo.spring.io/snapshot" }
+    maven { url "http://repo.spring.io/milestone" }
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile 		'org.springframework.boot:spring-boot-starter-web'
+    providedRuntime 		'org.springframework.boot:spring-boot-starter-tomcat'
+    compile 		'org.springframework.boot:spring-boot-starter-test'
+    compile			'org.springframework.boot:spring-boot-starter-security'
+    compile			'org.springframework.boot:spring-boot-starter-data-jpa'
+    compile			'org.springframework.boot:spring-boot-starter-jdbc'
+    compile 		'org.springframework.boot:spring-boot-starter-aop'
+    compile			'org.mybatis.spring.boot:mybatis-spring-boot-starter:1.1.1'
+    compile			'org.springframework.mobile:spring-mobile-device'
+    compile 		'org.apache.tomcat.embed:tomcat-embed-jasper'
+    compile 		'javax.servlet:jstl'
+    compile			'commons-lang:commons-lang:2.4'
+    compile			'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.8.1'
+    compile			'mysql:mysql-connector-java'
+    compile 		'com.google.firebase:firebase-server-sdk:3.0.0'
+    compile 		'org.seleniumhq.selenium:selenium-java:2.47.1'
+	compile 		'org.apache.poi:poi:3.10.1'
+	compile 		group: 'io.springfox', name: 'springfox-swagger2', version: '2.5.0'
+	compile 		group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.5.0'
+	compile 		group: 'org.bgee.log4jdbc-log4j2', name: 'log4jdbc-log4j2-jdbc4', version: '1.16'
+	compile			'com.amazonaws:aws-java-sdk-s3:1.11.35'
+	compile			'net.gpedro.integrations.slack:slack-webhook:1.2.1'
+	compile			'eu.bitwalker:UserAgentUtils:1.18'
+	compile			'org.springframework.security:spring-security-taglibs'
+	compile 		group: 'com.mortennobel', name: 'java-image-scaling', version: '0.8.6'
+	compile			'org.apache.tiles:tiles-jsp:3.0.4'
+	compile 		group: 'net.sf.ehcache', name: 'ehcache', version: '2.10.3'
+	compile 		group: 'org.webjars.bower', name: 'jquery', version: '3.1.1'
+	compile			'org.mariadb.jdbc:mariadb-java-client:2.0.2'
+	//compile group: 'org.springframework', name: 'spring-websocket', version: '4.3.9.RELEASE'
+	//compile group: 'org.springframework', name: 'spring-messaging', version: '4.0.0.RELEASE'
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-websocket', version: '1.5.4.RELEASE'
+	compile group: 'org.webjars', name: 'sockjs-client', version: '1.1.2'
+	compile group: 'org.webjars', name: 'stomp-websocket', version: '2.3.1'
+	compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.3'
+
+
+
+
+	//compile 		'com.eclipsesource.j2v8:j2v8_macosx_x86_64:4.5.0'
+	//compile         'com.eclipsesource.j2v8:j2v8_linux_x86_64:4.5.0'
+	//compile 		'com.eclipsesource.j2v8:j2v8_win32_x86_64:4.5.0'
+
+	testCompile 		"junit:junit"
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
+
+def getCurrentTimestamp () {
+  Date today = new Date ()
+  SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd-HHmmss")
+  return df.format (today)
+}
+
+task zip(type: Zip) {
+    classifier = 'deploy-' + getCurrentTimestamp()
+    from projectDir
+	include 'Procfile'
+	include 'run_server.bat'
+    //include 'src/**/*'
+    include 'build/libs/*'
+}
