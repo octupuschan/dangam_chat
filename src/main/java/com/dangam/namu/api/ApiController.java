@@ -7,13 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dangam.namu.api.dto.Sub;
 import com.dangam.namu.api.dto.Test;
+import com.dangam.namu.api.dto.User;
 import com.dangam.namu.api.service.ApiService;
 
 
@@ -48,19 +47,56 @@ public class ApiController {
     return ResponseEntity.ok(test);
   }
   
-  @RequestMapping(value = "/dbTest", method = RequestMethod.GET)
+  @GetMapping("/getId")
   @ResponseBody
-  public ResponseEntity<Map<String, Object>> bname(@RequestParam("value") String uid) throws Exception {
+  public ResponseEntity<Map<String, Object>> getId() throws Exception {
+	  
+	  Map<String, Object> result = new  HashMap<String, Object>();
+	  result.put("contents", apiService.getId());
+	  return ResponseEntity.ok(result);
+  }
+  
+  @GetMapping("/getUid")
+  @ResponseBody
+  public ResponseEntity<Map<String, Object>> getUid() throws Exception {
+	  
+	  Map<String, Object> result = new  HashMap<String, Object>();
+	  result.put("contents", apiService.getUid());
+	  return ResponseEntity.ok(result);
+  }
+  
+  @GetMapping("/getByAge")
+  @ResponseBody
+  public ResponseEntity<Map<String, Object>> getBookByAge(@RequestParam("value") Integer uid) throws Exception {
+	  
+	  Map<String, Object> result = new  HashMap<String, Object>();
+	  result.put("contents", apiService.getBookByAge(uid));
+	  return ResponseEntity.ok(result);
+  }
+  
+  @GetMapping("/getByUid")
+  @ResponseBody
+  public ResponseEntity<Map<String, Object>> getIdByUid(@RequestParam("value") String uid) throws Exception {
 	  
 	  Map<String, Object> result = new  HashMap<String, Object>();
 	  result.put("contents", apiService.getIdByUid(uid));
 	  return ResponseEntity.ok(result);
-	  //return ResponseEntity.ok(apiService.getBookByAge(7));
-	  //return ResponseEntity.ok(mapper.getBookByAge(7));
-	  //return ResponseEntity.ok(mapper.getBookByAge(7));
-	  //return ResponseEntity.ok(mapper.getBook("베이비올 탄생"));
   }
   
+  @GetMapping("/getById")
+  @ResponseBody
+  public ResponseEntity<Map<String, Object>> getBookById(@RequestParam("value_1") Integer age, @RequestParam("value_2") String id) throws Exception {
+	  Map<String, Object> map = new HashMap<String, Object>();
+	  User user = new User(); 
+	  user.setAge(age);
+	  user.setId(id);
+	  
+	  map.put("user", user);
+	  
+	  Map<String, Object> result = new  HashMap<String, Object>();
+	  result.put("contents", apiService.getBookById(map));
+	  return ResponseEntity.ok(result);
+  }
   
 
 }

@@ -6,11 +6,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.dangam.namu.api.mapper.HomeMapper">
 
 <!-- id = 메소드 이름과 같게 -->
-<select id="getBook" resultType="Product">
-	select price
-	from tbl_product
-	where bookName = #{bookName}
-</select> 
 
 <select id="getUid" resultType="Code">
 	select codeName
@@ -27,7 +22,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <select id="getBookByAge" resultType="Product">
 	select *
 	from tbl_product
-	where <![CDATA[minAge<#{age}]]> and <![CDATA[maxAge>#{age}]]>
+	where <![CDATA[minAge<=#{age}]]> and <![CDATA[maxAge>=#{age}]]>
 </select>
 
 <select id="getIdByUid" resultType="Code">
@@ -35,14 +30,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	from tbl_code
 	where uCodeId = #{uCodeId}
 </select>
+  
 
-<!--  
-<mapper namespace="user">
 <select id="getBookById" parameterType="hashmap" resultType="Product">
 	select *
 	from tbl_product
-	where bookCode = #{bookCode} and <![CDATA[minAge<#{user.age}]]> and <![CDATA[maxAge>#{user.age}]]>
+	where bookCode = #{user.id} and <![CDATA[minAge<=#{user.age}]]> and <![CDATA[maxAge>=#{user.age}]]>
 </select>
--->
+
 
 </mapper>
