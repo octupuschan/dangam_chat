@@ -17,10 +17,6 @@ public class ApiDao {
 
 	private static String namespace = "com.dangam.namu.api.mapper.HomeMapper";
 	
-	public List<Product> getBook(String bookName){
-		return session.selectList(namespace + ".getBook");
-	}
-	
 	public List<Code> getUid(){
 		return session.selectList(namespace + ".getUid");
 	}
@@ -37,7 +33,7 @@ public class ApiDao {
 		return session.selectList(namespace + ".getIdByUid", uid);
 	}
 	
-	public List<Product> getBookById(String bookCode, Object param){
+	public List<Product> getBookById(Object param){
 		return session.selectList(namespace + ".getBookById", param);
 	}
 	

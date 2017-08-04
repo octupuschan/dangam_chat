@@ -13,6 +13,7 @@
       	<link rel="stylesheet" href="<c:url value='../resources/common/css/style.css'/>">
 		<script src="/webjars/sockjs-client/1.1.2/sockjs.js"></script>
 		<script src="/webjars/stomp-websocket/2.3.1/stomp.js"></script>
+		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 
 <title>test</title>
 </head>

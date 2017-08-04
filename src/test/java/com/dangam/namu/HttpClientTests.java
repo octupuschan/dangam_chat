@@ -34,11 +34,11 @@ public class HttpClientTests {
     private static final String bid = "8qcGTxZU1vgGNA8T4xYAvmPJWPH2";
 	private static final String base_url = 
 			"http://35.186.253.168:8080/Sarah/chat?"
-			+ "userID="+fid+"&"
-			+ "botID="+bid+"&"
+			+ "userID="+bid+"&"
+			+ "botID="+fid+"&"
 			+ "providerID=facebook&"
 			+ "lang=KO&"
-			+ "userKey="+fid+"&";
+			+ "userKey="+bid+"&";
 	private static final String test_url =
 			"https://www.naver.com/";
 	
@@ -52,7 +52,7 @@ public class HttpClientTests {
         CloseableHttpClient httpClient = HttpClients.createDefault();
         
         //get 메서드와 URL 설정
-        HttpGet httpGet_start = new HttpGet(base_url+"run=init");
+        HttpGet httpGet_start = new HttpGet(base_url+"run=init&question="+encodeResult);
         HttpGet httpGet_send = new HttpGet(base_url+"question="+ encodeResult); 
         
         //agent 정보 설정

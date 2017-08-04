@@ -10,7 +10,6 @@ import com.dangam.namu.api.dto.Product;
 @Mapper
 public interface HomeMapper {
 	
-	Product getBook(String bookName);
 	Code getUid();
 	Code getId();
 	List<Product> getBookByAge(Integer age);

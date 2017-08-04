@@ -14,6 +14,14 @@ public class ApiService {
 	
 	@Autowired
 	private ApiDao apiDao;
+		
+	public List<Code> getUid(){
+		return apiDao.getUid();
+	}
+	
+	public List<Code> getId(){
+		return apiDao.getId();
+	}
 	
 	public List<Product> getBookByAge(Integer age) throws Exception {
 		return apiDao.getBookByAge(age);
@@ -23,4 +31,7 @@ public class ApiService {
 		return apiDao.getIdByUid(uid);
 	}
 
+	public List<Product> getBookById(Object param){
+		return apiDao.getBookById(param);
+	}
 }

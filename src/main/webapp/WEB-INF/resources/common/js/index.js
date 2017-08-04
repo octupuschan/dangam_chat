@@ -29,13 +29,26 @@ function setDate(){
 }
 
 function insertMessage() {
-  parameter = $('.message-input').val();
   msg = $('.message-input').val();
+  console.log(msg);
   if ($.trim(msg) == '') {
     return false;
   }
+  check = true;
   WebSocket.sendMessage(msg);
   setDate();
+  $.ajax({
+ 		url: '/jsonTest',
+ 		type: 'GET',
+ 		data: {value : msg},
+ 		dataType: 'JSON',
+ 		success: function (output){
+ 			check = false;
+ 			WebSocket.sendMessage(output.contents);
+ 			self.clear
+ 		}
+   })
+  
   $('.message-input').val(null);
   updateScrollbar();
   setTimeout(function() {
@@ -103,41 +116,9 @@ var WebSocket = {
       },
       sendMessage:function(text){
          this.stompClient.send('/app/hello',{}, text);
-         check = true;
-         
       },
       init:function(){
-         this.connect();
-         var self = this;
-         function chatKeyDownHandler(e){
-            if(e.keyCode == 13 && $('.message-input').val() !==''){
-               self.sendMessage($('.message-input').val());
-               self.clear();
-            }
-         };
-         $('.message-input').on('keydown',chatKeyDownHandler);
+         this.connect();  
       }
-      
-      $('#chatting_input').keypress(function(e){
-    	  if(e.keyCode == 13){
-    		console.log(parameter);
-    	 	var result = [];
-			$.ajax({
-				url: '/dbTest',
-				type: 'GET',
-				data: {value: parameter},
-				dataType: 'JSON',
-				success: function (output){
-					$.each(output.contents, function (k, v){
-						result.push(v);
-					});
-					
-					$.each(result, function(k, v){
-						var out = $('#chatting_out').val();
-			            $('#chatting_out').val(result[k].codeName+'\n'+out);
-					});
-				}
-			})
-		}});
 
 };

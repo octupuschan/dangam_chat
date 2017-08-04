@@ -77,19 +77,14 @@
     		console.log(parameter);
     	 	var result = [];
 			$.ajax({
-				url: '/dbTest',
+				url: '/jsonTest',
 				type: 'GET',
-				data: {value: parameter},
+				data: {value : parameter},
 				dataType: 'JSON',
 				success: function (output){
-					$.each(output.contents, function (k, v){
-						result.push(v);
-					});
 					
-					$.each(result, function(k, v){
-						var out = $('#chatting_out').val();
-			            $('#chatting_out').val(result[k].codeName+'\n'+out);
-					});
+					$('#chatting_out').val(output.contents);
+				
 				}
 			})
 		}});

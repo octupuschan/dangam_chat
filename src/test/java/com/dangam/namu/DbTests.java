@@ -42,8 +42,6 @@ public class DbTests {
 
 	@Test
 	public void testFormat() throws JsonParseException, JsonMappingException, IOException {
-		System.out.println(mapper.getBook("베이비올 탄생"));
-		
 		
 	}
 }
