@@ -30,7 +30,7 @@ import org.junit.Test;
 
 public class HttpClientTests {
 	
-    private static final String fid = "BB-b10-20170727165651-YyjwqbA2j5";
+ 	private static final String fid = "BB-b10-20170706144552-LC6QV6vt6F";
     private static final String bid = "8qcGTxZU1vgGNA8T4xYAvmPJWPH2";
 	private static final String base_url = 
 			"http://35.186.253.168:8080/Sarah/chat?"
@@ -46,7 +46,7 @@ public class HttpClientTests {
     public void sendGet() throws ClientProtocolException, IOException {
     	
     	
-    	String encodeResult = URLEncoder.encode("안녕", "UTF-8");
+    	String encodeResult = URLEncoder.encode("5 살 입니다", "UTF-8");
     	
         //http client 생성
         CloseableHttpClient httpClient = HttpClients.createDefault();

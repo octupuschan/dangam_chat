@@ -16,7 +16,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
 public class HttpClient {
-	 private static final String fid = "BB-b10-20170727165651-YyjwqbA2j5";
+	 	private static final String fid = "BB-b10-20170706144552-LC6QV6vt6F";
 	    private static final String bid = "8qcGTxZU1vgGNA8T4xYAvmPJWPH2";
 		private static final String base_url = 
 				"http://35.186.253.168:8080/Sarah/chat?"
@@ -29,7 +29,7 @@ public class HttpClient {
 				"https://www.naver.com/";
 		
 	    
-	    public String sendGet(String input) throws ClientProtocolException, IOException {
+	    public Inbi sendGet(String input) throws ClientProtocolException, IOException {
 	    	
 	    	
 	    	String encodeResult = URLEncoder.encode(input, "UTF-8");
@@ -58,6 +58,6 @@ public class HttpClient {
 	        Inbi obj = mapper.readValue(json_2, Inbi.class);
 	        
 	        
-	        return obj.getData().getMessage();
+	        return obj;
 	    }
 }

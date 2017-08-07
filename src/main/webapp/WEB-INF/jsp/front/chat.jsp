@@ -83,7 +83,7 @@
 				dataType: 'JSON',
 				success: function (output){
 					
-					$('#chatting_out').val(output.contents);
+					$('#chatting_out').val(output.contents.data.message);
 				
 				}
 			})

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dangam.namu.api.dto.Inbi;
 import com.dangam.namu.api.dto.Sub;
 import com.dangam.namu.api.dto.Test;
 import com.dangam.namu.api.dto.User;
@@ -108,9 +109,9 @@ public class ApiController {
   
   @GetMapping("/jsonTest")
   @ResponseBody
-  public ResponseEntity<Map<String, String>> getResoponse(@RequestParam("value") String input){
+  public ResponseEntity<Map<String, Object>> getResoponse(@RequestParam("value") String input){
 	  
-	  String response = null;
+	  Inbi response = null;
 	  try {
 		response = httpClient.sendGet(input);
 	} catch (ClientProtocolException e) {
@@ -119,8 +120,9 @@ public class ApiController {
 		e.printStackTrace();
 	}
 	  
-	  Map<String, String> result = new HashMap<String, String>();
+	  Map<String, Object> result = new HashMap<String, Object>();
 	  result.put("contents", response);
+	  result.put("id", "bot");
 	  
 	  return ResponseEntity.ok(result);
   }
