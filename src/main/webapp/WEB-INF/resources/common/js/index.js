@@ -46,6 +46,22 @@ function printMessage(msg, id){
      }, 1000 + (Math.random() * 20) * 100);
 }
 
+function makeButton(output) {
+	 var result = [];
+	
+	if(output.contents.data.uiScript != null){
+			$.each(output.contents.data.uiScript.uiScript.options, function (k, v){
+				result.push(v);
+			});
+			console.log(result);
+	
+			$.each(result, function(k, v){
+			printMessage(result[k].text, output.id);
+				
+		});
+	}
+}
+
 function insertMessage() {
   msg = $('.message-input').val();
   console.log(msg);
@@ -56,7 +72,7 @@ function insertMessage() {
   printMessage(msg, "user");
   setDate();
   
-  var result;
+ 
   
   $.ajax({
  		url: '/jsonTest',
@@ -64,11 +80,10 @@ function insertMessage() {
  		data: {value : msg},
  		dataType: 'JSON',
  		success: function (output){
- 			result = output;
  			printMessage(output.contents.data.message, output.id);
- 			console.log(result);
- 		}
-   })
+ 			setTimeout(makeButton(output), 1000);
+		}
+  });
    
  
   $('.message-input').val(null);
@@ -77,7 +92,6 @@ function insertMessage() {
   }, 1000 + (Math.random() * 20) * 100);
 }
 
-function category(){}
 
 $('.message-submit').click(function() {
   insertMessage();

@@ -50,7 +50,10 @@ public class HttpClient {
 	        CloseableHttpResponse httpResponse_send = httpClient.execute(httpGet_send);
 	        
 	        String json_2 = EntityUtils.toString(httpResponse_send.getEntity(), "UTF-8");
-	        
+	        json_2 = json_2.replace("\\", "");
+	        json_2 = json_2.replace("\"{","{");
+	        json_2 = json_2.replace("}\"", "}");
+	        json_2 = json_2.replace("\"teyp\":\"MESSAGE\",", "");
 	    
 	        httpClient.close();
 	        

@@ -46,7 +46,7 @@ public class HttpClientTests {
     public void sendGet() throws ClientProtocolException, IOException {
     	
     	
-    	String encodeResult = URLEncoder.encode("5 살 입니다", "UTF-8");
+    	String encodeResult = URLEncoder.encode("학부모가 원하는 책을 읽히고 싶어요", "UTF-8");
     	
         //http client 생성
         CloseableHttpClient httpClient = HttpClients.createDefault();
@@ -70,6 +70,10 @@ public class HttpClientTests {
         
         System.out.println(httpResponse_send.getStatusLine().getStatusCode());
         String json_2 = EntityUtils.toString(httpResponse_send.getEntity(), "UTF-8");
+        json_2 = json_2.replace("\\", "");
+        json_2 = json_2.replace("\"{","{");
+        json_2 = json_2.replace("}\"", "}");
+        json_2 = json_2.replace("\"teyp\":\"MESSAGE\",", "");
         
         System.out.println(json_1);
         System.out.println(json_2);

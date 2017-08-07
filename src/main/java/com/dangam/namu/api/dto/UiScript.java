@@ -3,7 +3,7 @@ package com.dangam.namu.api.dto;
 public class UiScript {
 	String name;
 	String type;
-	String uiScript;
+	UiScript_2 uiScript;
 	
 	public String getName() {
 		return name;
@@ -17,10 +17,10 @@ public class UiScript {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public String getUiScript() {
+	public UiScript_2 getUiScript() {
 		return uiScript;
 	}
-	public void setUiScript(String uiScript) {
+	public void setUiScript(UiScript_2 uiScript) {
 		this.uiScript = uiScript;
 	}
 	
