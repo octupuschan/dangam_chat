@@ -1,3 +1,4 @@
+
 var $messages = $('.messages-content'),
     d, h, m,
     i = 0;
@@ -5,10 +6,31 @@ var $messages = $('.messages-content'),
 $(window).load(function() {
   $messages.mCustomScrollbar();
   setTimeout(function() {
+	  initMessage();
   }, 100);
 });
 
-var check = false;
+
+function initMessage() {
+	  if ($('.message-input').val() != '') {
+	    return false;
+	  }
+	  $('<div class="message loading new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure><span></span></div>').appendTo($('.mCSB_container'));
+	  updateScrollbar();
+	  var initMessage = "안녕하세요.아람 북스의 전집을 추천하고,소개해주는 아람봇이라고 합니다.책을 추천하기 위해 몇가지 질문을 드리겠습니다.책 추천을 받기 원하신다면 <시작>이라고 입력해주세요!";
+	  setTimeout(function() {
+	    $('.message.loading').remove();
+	    $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+initMessage+ '</div>').appendTo($('.mCSB_container')).addClass('new');
+	    setDate();
+	    updateScrollbar();
+	    i++;
+	  }, 1000 + (Math.random() * 20) * 100);
+
+	}
+
+
+
+
 var parameter;
 
 function updateScrollbar() {
@@ -29,37 +51,24 @@ function setDate(){
 }
 
 function printMessage(msg, id){
-	$('<div class="message loading new"><figure class="avatar"><img src="/resources/common/robot.png"/></figure><span></span></div>').appendTo($('.mCSB_container'));
-    $('.message.loading').remove(); 
-    updateScrollbar();
-     setTimeout(function() {
-       if(id != "bot"){
-      	 $('<div class="message message-personal">' + msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
-      	 check = false;
-       }
-       else{
-      	 $('<div class="message new"><figure class="avatar"><img src="/resources/common/robot.png"/></figure>' + msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
-       }
-       setDate();
-       updateScrollbar();
-       i++;
-     }, 1000 + (Math.random() * 20) * 100);
-}
-
-function makeButton(output) {
-	 var result = [];
-	
-	if(output.contents.data.uiScript != null){
-			$.each(output.contents.data.uiScript.uiScript.options, function (k, v){
-				result.push(v);
-			});
-			console.log(result);
-	
-			$.each(result, function(k, v){
-			printMessage(result[k].text, output.id);
-				
-		});
-	}
+    if(id==="user"){
+      $('<div class="message message-personal">' + msg + '</div>').appendTo($('.mCSB_container')).addClass('new'); 
+      setDate();
+      updateScrollbar();
+      i++;
+    }
+    else{
+    	setTimeout(function() {
+    	$('<div class="message loading new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg"/></figure><span></span></div>').appendTo($('.mCSB_container'));
+    	updateScrollbar();
+        $('.message.loading').remove(); 
+        $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg"/></figure>' + msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
+        setDate();
+        updateScrollbar();
+        i++;
+         }, 1000 + (Math.random() * 20) * 100);
+    	
+    }
 }
 
 function insertMessage() {
@@ -68,22 +77,23 @@ function insertMessage() {
   if ($.trim(msg) == '') {
     return false;
   }
- 
-  printMessage(msg, "user");
+  var id = "user";
+  printMessage(msg,id);
   setDate();
   
- 
+  var result;
   
   $.ajax({
- 		url: '/jsonTest',
+ 		url: '/jsonTest', //apicontrol에서 겟챠!!
  		type: 'GET',
  		data: {value : msg},
  		dataType: 'JSON',
  		success: function (output){
+ 			result = output;
  			printMessage(output.contents.data.message, output.id);
- 			setTimeout(makeButton(output), 1000);
-		}
-  });
+ 			console.log(result);
+ 		}
+   })
    
  
   $('.message-input').val(null);
@@ -92,6 +102,7 @@ function insertMessage() {
   }, 1000 + (Math.random() * 20) * 100);
 }
 
+function category(){}
 
 $('.message-submit').click(function() {
   insertMessage();

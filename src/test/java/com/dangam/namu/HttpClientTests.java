@@ -30,8 +30,9 @@ import org.junit.Test;
 
 public class HttpClientTests {
 	
- 	private static final String fid = "BB-b10-20170706144552-LC6QV6vt6F";
-    private static final String bid = "8qcGTxZU1vgGNA8T4xYAvmPJWPH2";
+	private static final String fid = "BB-b10-20170706144205-TqkueT0tyY";
+    private static final String bid = "9Zt3tpIBVGfFbZqO9iWbX3ACQ2j1";
+
 	private static final String base_url = 
 			"http://35.186.253.168:8080/Sarah/chat?"
 			+ "userID="+bid+"&"
@@ -46,20 +47,20 @@ public class HttpClientTests {
     public void sendGet() throws ClientProtocolException, IOException {
     	
     	
-    	String encodeResult = URLEncoder.encode("ÇÐºÎ¸ð°¡ ¿øÇÏ´Â Ã¥À» ÀÐÈ÷°í ½Í¾î¿ä", "UTF-8");
+    	String encodeResult = URLEncoder.encode("ï¿½ÐºÎ¸ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ Ã¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Í¾ï¿½ï¿½", "UTF-8");
     	
-        //http client »ý¼º
+        //http client ï¿½ï¿½ï¿½ï¿½
         CloseableHttpClient httpClient = HttpClients.createDefault();
         
-        //get ¸Þ¼­µå¿Í URL ¼³Á¤
+        //get ï¿½Þ¼ï¿½ï¿½ï¿½ï¿½ URL ï¿½ï¿½ï¿½ï¿½
         HttpGet httpGet_start = new HttpGet(base_url+"run=init&question="+encodeResult);
         HttpGet httpGet_send = new HttpGet(base_url+"question="+ encodeResult); 
         
-        //agent Á¤º¸ ¼³Á¤
+        //agent ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         httpGet_start.addHeader("content-type", "application/json");
         httpGet_send.addHeader("content-type", "application/json");
         
-        //get ¿äÃ»
+        //get ï¿½ï¿½Ã»
         CloseableHttpResponse httpResponse_start = httpClient.execute(httpGet_start);
         CloseableHttpResponse httpResponse_send = httpClient.execute(httpGet_send);
         

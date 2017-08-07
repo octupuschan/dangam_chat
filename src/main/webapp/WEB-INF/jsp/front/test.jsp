@@ -35,10 +35,9 @@
   
   <div class="agent-face">
     <div class="half">
-     <img class="agent circle" src="../resources/common/robot.png" alt="aram image">
+     <img class="agent circle" src="../resources/common/mosaLiS2uB.jpg" alt="aram image">
     </div>
   </div>
-  
 	<div class="chat">
   	<div class="chat-title">
     	<h1>ARAMBOT</h1>
