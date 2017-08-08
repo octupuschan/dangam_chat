@@ -29,10 +29,6 @@ function initMessage() {
 	}
 
 
-
-
-var parameter;
-
 function updateScrollbar() {
   $messages.mCustomScrollbar("update").mCustomScrollbar('scrollTo', 'bottom', {
     scrollInertia: 10,
@@ -59,10 +55,29 @@ function printMessage(msg, id){
     }
     else{
     	setTimeout(function() {
+    	var sendMessage = msg.message;
     	$('<div class="message loading new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg"/></figure><span></span></div>').appendTo($('.mCSB_container'));
     	updateScrollbar();
         $('.message.loading').remove(); 
-        $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg"/></figure>' + msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
+        
+    	if(msg.uiScript!=null)
+    		{
+    		for(var i=0;i<msg.uiScript.uiScript.optionsLength;i++)
+    			{
+    			$(function(){
+    			    $('button').on('click',function(){
+    			    	var buttonValue = msg.uiScript.uiScript.options[i].text;
+    			        var r= $('<input type="button" value="buttonValue"/>');
+    			        $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg"/></figure>' + r + '</div>').appendTo($('.mCSB_container')).addClass('new');
+    			    });
+    			});
+    			}
+    		
+    		}
+    	else{
+        //if(msg.out)
+        $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg"/></figure>' + sendMessage + '</div>').appendTo($('.mCSB_container')).addClass('new');
+    	}
         setDate();
         updateScrollbar();
         i++;
@@ -90,7 +105,8 @@ function insertMessage() {
  		dataType: 'JSON',
  		success: function (output){
  			result = output;
- 			printMessage(output.contents.data.message, output.id);
+ 			//printMessage(output.contents.data.message, output.id);
+ 			printMessage(output.contents.data, output.id);
  			console.log(result);
  		}
    })

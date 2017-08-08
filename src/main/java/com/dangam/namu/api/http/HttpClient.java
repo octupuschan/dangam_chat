@@ -33,12 +33,18 @@ public class HttpClient {
 	    	
 	    	
 	    	String encodeResult = URLEncoder.encode(input, "UTF-8");
+	    	/*
+	    	 * 사용자 입력문 url로 보내기 위해서(?) 인코딩.
+	    	 * */
 	    	
 	        //http client ����
 	        CloseableHttpClient httpClient = HttpClients.createDefault();
 	        
 	        //get �޼���� URL ����
 	        HttpGet httpGet_start = new HttpGet(base_url+"run=init&question="+encodeResult);
+	        /*
+	         * httpGet_start 의 기능???? 
+	         * */
 	        HttpGet httpGet_send = new HttpGet(base_url+"question="+ encodeResult); 
 	        
 	        //agent ���� ����
@@ -54,11 +60,17 @@ public class HttpClient {
 	        json_2 = json_2.replace("\"{","{");
 	        json_2 = json_2.replace("}\"", "}");
 	        json_2 = json_2.replace("\"teyp\":\"MESSAGE\",", "");
+	        /*
+	         * replace 관련 코드는 uiScript 관련해서.... uiScript 없을땐 상관없는거 확인 완료.
+	         * */
 	    
 	        httpClient.close();
 	        
 	        ObjectMapper mapper = new ObjectMapper();
 	        Inbi obj = mapper.readValue(json_2, Inbi.class);
+	        /*
+	         * 
+	         * */
 	        
 	        
 	        return obj;

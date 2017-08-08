@@ -38,8 +38,8 @@ public class ApiController {
   @GetMapping("/arambooks")
   public ResponseEntity<Test> viewMain() {
 	Sub sub = new Sub();
-	sub.setProp01("°æ±âµµ");
-	sub.setProp02("½ÃÈï½Ã");
+	sub.setProp01("ï¿½ï¿½âµµ");
+	sub.setProp02("ï¿½ï¿½ï¿½ï¿½ï¿½");
 	
 	Sub arr[] = new Sub[3];
 	arr[0]=sub;
@@ -47,7 +47,7 @@ public class ApiController {
     Test test = new Test();
     test.setProp01("38.999");
     test.setProp02("hihi");
-    test.setProp03("´Ü°¨´Ü°¨");
+    test.setProp03("ï¿½Ü°ï¿½ï¿½Ü°ï¿½");
     test.setProp04(sub);
     test.setProp05(arr);
     
@@ -101,7 +101,6 @@ public class ApiController {
 	  user.setId(id);
 	  
 	  map.put("user", user);
-	  
 	  Map<String, Object> result = new  HashMap<String, Object>();
 	  result.put("contents", apiService.getBookById(map));
 	  return ResponseEntity.ok(result);
@@ -120,8 +119,9 @@ public class ApiController {
 		e.printStackTrace();
 	}
 	  
-	  Map<String, Object> result = new HashMap<String, Object>();
-	  result.put("contents", response);
+	  Map<String, Object> result = new HashMap<String, Object>(); //String - key Object- value 
+	  //Objectì˜ ìš©ë„?? - 
+	  result.put("contents", response); //ì ‘ê·¼í•˜ë ¤ë©´ contentsë¡œ ì ‘ê·¼...!! 
 	  result.put("id", "bot");
 	  
 	  return ResponseEntity.ok(result);
