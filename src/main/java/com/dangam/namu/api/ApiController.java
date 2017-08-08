@@ -56,7 +56,7 @@ public class ApiController {
   
   @GetMapping("/getId")
   @ResponseBody
-  public ResponseEntity<Map<String, Object>> getId() throws Exception {
+  public ResponseEntity<Map<String, Object>> getId(@RequestParam("value") String no) throws Exception {
 	  
 	  Map<String, Object> result = new  HashMap<String, Object>();
 	  result.put("contents", apiService.getId());
