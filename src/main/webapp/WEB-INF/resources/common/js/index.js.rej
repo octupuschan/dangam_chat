@@ -1,0 +1,9 @@
+diff a/src/main/webapp/WEB-INF/resources/common/js/index.js b/src/main/webapp/WEB-INF/resources/common/js/index.js	(rejected hunks)
+@@ -48,6 +48,7 @@
+ 	 var result = [];
+ 	
+ 	if(output.contents.data.uiScript != null){
++			$.each(output.contents.data.uiScript.uiScript.options, function (k, v){
+ 				result.push(v);
+ 			});
+ 			console.log(result);

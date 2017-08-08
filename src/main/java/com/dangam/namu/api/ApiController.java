@@ -56,7 +56,7 @@ public class ApiController {
   
   @GetMapping("/getId")
   @ResponseBody
-  public ResponseEntity<Map<String, Object>> getId() throws Exception {
+  public ResponseEntity<Map<String, Object>> getId(@RequestParam("value") String no) throws Exception {
 	  
 	  Map<String, Object> result = new  HashMap<String, Object>();
 	  result.put("contents", apiService.getId());
@@ -65,7 +65,7 @@ public class ApiController {
   
   @GetMapping("/getUid")
   @ResponseBody
-  public ResponseEntity<Map<String, Object>> getUid() throws Exception {
+  public ResponseEntity<Map<String, Object>> getUid(@RequestParam("value") String no) throws Exception {
 	  
 	  Map<String, Object> result = new  HashMap<String, Object>();
 	  result.put("contents", apiService.getUid());
