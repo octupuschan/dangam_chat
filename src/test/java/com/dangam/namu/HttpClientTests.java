@@ -47,20 +47,22 @@ public class HttpClientTests {
     public void sendGet() throws ClientProtocolException, IOException {
     	
     	
+
     	String encodeResult = URLEncoder.encode("여자 아이입니다", "UTF-8");
+
     	
-        //http client ����
+        //http client 占쏙옙占쏙옙
         CloseableHttpClient httpClient = HttpClients.createDefault();
         
-        //get �޼���� URL ����
+        //get 占쌨쇽옙占쏙옙占� URL 占쏙옙占쏙옙
         HttpGet httpGet_start = new HttpGet(base_url+"run=init&question="+encodeResult);
         HttpGet httpGet_send = new HttpGet(base_url+"question="+ encodeResult); 
         
-        //agent ���� ����
+        //agent 占쏙옙占쏙옙 占쏙옙占쏙옙
         httpGet_start.addHeader("content-type", "application/json");
         httpGet_send.addHeader("content-type", "application/json");
         
-        //get ��û
+        //get 占쏙옙청
         CloseableHttpResponse httpResponse_start = httpClient.execute(httpGet_start);
         CloseableHttpResponse httpResponse_send = httpClient.execute(httpGet_send);
         
