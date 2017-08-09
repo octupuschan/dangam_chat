@@ -1,4 +1,8 @@
-
+/*
+ * settimeout(function,second) -> second만큼의 시간 지난 후 function 실행. 
+ * 
+ * 
+ * */
 var $messages = $('.messages-content'),
     d, h, m,
     i = 0;
@@ -22,7 +26,6 @@ function initMessage() {
 	  setTimeout(function() {
 	    $('.message.loading').remove();
 	    $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+initMessage+ '</div>').appendTo($('.mCSB_container')).addClass('new');
-	    setDate();
 	    updateScrollbar();
 	  }, 1000 + (Math.random() * 20) * 100);
 
@@ -35,20 +38,10 @@ function updateScrollbar() {
   });
 }
 
-function setDate(){
-  d = new Date()
-  if (m != d.getMinutes()) {
-    m = d.getMinutes();
-    $('<div class="timestamp">' + d.getHours() + ':' + m + '</div>').appendTo($('.message:last'));
-    $('<div class="checkmark-sent-delivered">&check;</div>').appendTo($('.message:last'));
-    $('<div class="checkmark-read">&check;</div>').appendTo($('.message:last'));
-  }
-}
-
 function printMessage(msg, id){
     if(id==="user"){
       $('<div class="message message-personal">' + msg + '</div>').appendTo($('.mCSB_container')).addClass('new'); 
-      setDate();
+     //setDate();
       updateScrollbar();
     }
     else{
@@ -57,7 +50,6 @@ function printMessage(msg, id){
     	updateScrollbar();
         $('.message.loading').remove(); 
         $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg"/></figure>' + msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
-        setDate();
         updateScrollbar();
     }
 }
@@ -78,7 +70,6 @@ function makeButton(param) {
 		
 		var dynamicTag = "<div class='list'><input type='button' id='btn"+ j +"' value='" + result[k].text + "'/></div>";
 		$(dynamicTag).appendTo($('.mCSB_container'));
-		setDate();
 	    updateScrollbar();
 		
 		$(document).on('click', '#btn'+j , function(){
@@ -91,7 +82,7 @@ function makeButton(param) {
 	});
 }
 
-function makeButtonByDB(param) {
+function makeButtonByDB(param) { //일단 이건 나중에 이해. 
 	$.ajax({
 		url: '/'+param.contents.data.uiScript.name,
 		type: 'GET',
@@ -109,7 +100,6 @@ function makeButtonByDB(param) {
 						+ output.contents[k].codeName + "'/></div>";
 					
 					$(dynamicTag).appendTo($('.mCSB_container'));
-					setDate();
 				    updateScrollbar();
 					
 					console.log(index);
@@ -158,8 +148,6 @@ function insertMessage() {
   }
   var id = "user";
   printMessage(msg,id);
-  setDate();
-  
   getJsonFromInbi(msg,id);
   
  
