@@ -5,7 +5,7 @@ public class UiScript {
 	String type;
 	UiScript_2 uiScript;
 	
-	public String getName() {
+	public String getName() { //uiScript 이름. 
 		return name;
 	}
 	public void setName(String name) {

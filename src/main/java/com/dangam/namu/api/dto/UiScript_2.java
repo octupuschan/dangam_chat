@@ -16,6 +16,9 @@ public class UiScript_2 {
 	public void setOptions(Options[] options) {
 		this.options = options;
 	}
+	public int getOptionsLength() {
+		return options.length;
+	}
 	
 	
 }
