@@ -79,9 +79,11 @@ function makeButton(output) {
 	});
 	console.log(result);
 	
-	$.each(result, function(k,v){
-		var dynamicTag = "<div class='message'><input type='button' id='btn' value='" + result[k].text + "'/></div>";
+	$.each(result, function(k,v){ //반복문 한번 돌때마다 실행할 함수. 
+		var dynamicTag = "<div class='message'><input type='button' id='btn" + result[k].text+ "' value='" + result[k].text + "'/></div>";
 		$(dynamicTag).appendTo($('.mCSB_container'));
+		 setDate();
+	     updateScrollbar();
 	});
 }
 
@@ -102,13 +104,17 @@ function makeButtonByDB(output) {
 	});
 }
 
-function insertMessage() {
+function insertMessage(msg="",id="") {
+  
+	if(msg==""){
   msg = $('.message-input').val();
-  console.log(msg);
+  }
   if ($.trim(msg) == '') {
     return false;
   }
-  var id = "user";
+  if(id==""){
+	  var id = "user";
+	  }
   printMessage(msg,id);
   setDate();
   
@@ -142,6 +148,37 @@ function insertMessage() {
 }
 
 
+
+
+$(document).on("click","#btn여자",function(){ //최적화 needed
+	var gender = "female";
+	
+	$.ajax({
+ 		url: '/jsonTest', //apicontrol에서 겟챠!!
+ 		type: 'GET',
+ 		data: {value : gender},
+ 		dataType: 'JSON',
+ 		success: function (output){
+ 		}
+
+	var msg = "여자 아이입니다"
+	var id ="user";
+	insertMessage(msg,id);
+	setDate();
+});
+
+
+
+$(document).on("click","#btn남자",function(){ //최적화 needed
+	var gender = "male";
+	var msg = "남자 아이입니다"
+	var id ="user";
+	insertMessage(msg,id);
+	setDate();
+});
+
+
+
 $('.message-submit').click(function() {
   insertMessage();
 });
@@ -152,6 +189,12 @@ $(window).on('keydown', function(e) {
     return false;
   }
 })
+
+
+
+
+
+
 
 
 $('.button').click(function(){

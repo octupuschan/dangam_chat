@@ -126,5 +126,11 @@ public class ApiController {
 	  
 	  return ResponseEntity.ok(result);
   }
-
+  @GetMapping("/setGender")
+  @ResponseBody
+  public void getresponseGender(@RequestParam("value") String input){
+	  
+	  
+	  
+  }
 }

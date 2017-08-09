@@ -47,7 +47,7 @@ public class HttpClientTests {
     public void sendGet() throws ClientProtocolException, IOException {
     	
     	
-    	String encodeResult = URLEncoder.encode("시작", "UTF-8");
+    	String encodeResult = URLEncoder.encode("여자 아이입니다", "UTF-8");
     	
         //http client ����
         CloseableHttpClient httpClient = HttpClients.createDefault();
