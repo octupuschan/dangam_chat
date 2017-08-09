@@ -2,6 +2,7 @@
 var $messages = $('.messages-content'),
     d, h, m,
     i = 0;
+var j = 0; //j를 전역으로 선언해서 btn들이 구분 가능(버튼 제어 변수)
 
 $(window).load(function() {
   $messages.mCustomScrollbar();
@@ -23,15 +24,9 @@ function initMessage() {
 	    $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+initMessage+ '</div>').appendTo($('.mCSB_container')).addClass('new');
 	    setDate();
 	    updateScrollbar();
-	    i++;
 	  }, 1000 + (Math.random() * 20) * 100);
 
 	}
-
-
-
-
-var parameter;
 
 function updateScrollbar() {
   $messages.mCustomScrollbar("update").mCustomScrollbar('scrollTo', 'bottom', {
@@ -55,7 +50,6 @@ function printMessage(msg, id){
       $('<div class="message message-personal">' + msg + '</div>').appendTo($('.mCSB_container')).addClass('new'); 
       setDate();
       updateScrollbar();
-      i++;
     }
     else{
     	
@@ -65,13 +59,9 @@ function printMessage(msg, id){
         $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg"/></figure>' + msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
         setDate();
         updateScrollbar();
-        i++;
-       
-    	
     }
 }
 
-var j = 0;
 
 function makeButton(param) {
 	
@@ -88,6 +78,8 @@ function makeButton(param) {
 		
 		var dynamicTag = "<div class='list'><input type='button' id='btn"+ j +"' value='" + result[k].text + "'/></div>";
 		$(dynamicTag).appendTo($('.mCSB_container'));
+		setDate();
+	    updateScrollbar();
 		
 		$(document).on('click', '#btn'+j , function(){
 			printMessage(result[k].id,"user");
@@ -117,6 +109,8 @@ function makeButtonByDB(param) {
 						+ output.contents[k].codeName + "'/></div>";
 					
 					$(dynamicTag).appendTo($('.mCSB_container'));
+					setDate();
+				    updateScrollbar();
 					
 					console.log(index);
 					$(document).on('click', '#btn'+j , function(){
@@ -168,45 +162,12 @@ function insertMessage() {
   
   getJsonFromInbi(msg,id);
   
-  
-   
  
   $('.message-input').val(null);
   updateScrollbar();
   setTimeout(function() {
   }, 1000 + (Math.random() * 20) * 100);
 }
-
-
-
-/*
-$(document).on("click","#btn여자",function(){ //최적화 needed
-	var gender = "female";
-	
-	$.ajax({
- 		url: '/jsonTest', //apicontrol에서 겟챠!!
- 		type: 'GET',
- 		data: {value : gender},
- 		dataType: 'JSON',
- 		success: function (output){
- 		}
-
-	var msg = "여자 아이입니다"
-	var id ="user";
-	insertMessage(msg,id);
-	setDate();
-});
-
-
-
-$(document).on("click","#btn남자",function(){ //최적화 needed
-	var gender = "male";
-	var msg = "남자 아이입니다"
-	var id ="user";
-	insertMessage(msg,id);
-	setDate();
-});
-*/
 
 
 $('.message-submit').click(function() {
@@ -220,15 +181,9 @@ $(window).on('keydown', function(e) {
   }
 })
 
-
-
-
-
-
-
-
 $('.button').click(function(){
   $('.menu .items span').toggleClass('active');
    $('.menu .button').toggleClass('active');
 });
+
 
