@@ -12,10 +12,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dangam.namu.api.dto.Age;
+import com.dangam.namu.api.dto.Gender;
 import com.dangam.namu.api.dto.Inbi;
+import com.dangam.namu.api.dto.Preference;
 import com.dangam.namu.api.dto.Sub;
 import com.dangam.namu.api.dto.Test;
 import com.dangam.namu.api.dto.User;
+
 import com.dangam.namu.api.http.HttpClient;
 import com.dangam.namu.api.service.ApiService;
 
@@ -128,9 +132,26 @@ public class ApiController {
   }
   @GetMapping("/setGender")
   @ResponseBody
-  public void getresponseGender(@RequestParam("value") String input){
+  public void setuserGender(@RequestParam("value") String input){
 	  
+	  Gender gender = new Gender();
+	  gender.setGender(input);
+  }
+  
+  @GetMapping("/setAge")
+  @ResponseBody
+  public void setuserAge(@RequestParam("value") int inputAge){
 	  
-	  
+	  Age age = new Age();
+	  age.setAge(inputAge);
+  }
+  
+  @GetMapping("/setPreference")
+  @ResponseBody
+  public void setPreference(@RequestParam("value") String inputPreference){
+
+	  Preference preference = new Preference();
+	  preference.setPreference(inputPreference);
+	
   }
 }
