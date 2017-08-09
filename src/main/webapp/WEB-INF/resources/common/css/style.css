@@ -154,6 +154,24 @@ Messages
   border: 1px solid #ccc;
   /*text-shadow: 0 1px 1px rgba(0, 0, 0, .2);*/
 }
+
+.messages .list {
+  clear: both;
+  float: left;
+  padding: 4px 10px 5px;
+  border-radius: 20px 20px 20px 0;
+  background: #eee;
+  /*rgba(0, 0, 0, 0.1);*/
+  margin: 2px 0;
+  font-size: 14px;
+  line-height: 1.4;
+  margin-left: 35px;
+  position: relative;
+  border: 1px solid #ccc;
+  /*text-shadow: 0 1px 1px rgba(0, 0, 0, .2);*/
+}
+
+
 .messages .message .timestamp {
   position: absolute;
   bottom: -15px;

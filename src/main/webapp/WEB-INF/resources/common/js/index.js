@@ -71,30 +71,60 @@ function printMessage(msg, id){
     }
 }
 
-function makeButton(output) {
+var j = 0;
+
+function makeButton(param) {
+	
 	var result = [];
 	
-	$.each(output.contents.data.uiScript.uiScript.options, function (k, v){
+	$.each(param.contents.data.uiScript.uiScript.options, function (k, v){
 		result.push(v);
 	});
 	console.log(result);
 	
+	
 	$.each(result, function(k,v){
-		var dynamicTag = "<div class='message'><input type='button' id='btn' value='" + result[k].text + "'/></div>";
+		
+		var dynamicTag = "<div class='list'><input type='button' id='btn"+ j +"' value='" + result[k].text + "'/></div>";
 		$(dynamicTag).appendTo($('.mCSB_container'));
+		
+		$(document).on('click', '#btn'+j , function(){
+			printMessage(result[k].id,"user");
+			getJsonFromInbi(result[k].id,"bot");
+		})
+		
+		j++;
+		
+		
 	});
 }
 
-function makeButtonByDB(output) {
+function makeButtonByDB(param) {
 	$.ajax({
-		url: '/'+output.contents.data.uiScript.name,
+		url: '/'+param.contents.data.uiScript.name,
 		type: 'GET',
 		data: {value : "not"},
 		dataType: 'JSON',
 		success: function (output){
+			console.log(param);
+			var index = 0;
 			setTimeout(function(){
 				$.each(output.contents, function(k,v){
 					
+					var dynamicTag = "<div class='list'><input type='button' id='btn"
+						+ j 
+						+"'value='" 
+						+ output.contents[k].codeName + "'/></div>";
+					
+					$(dynamicTag).appendTo($('.mCSB_container'));
+					
+					console.log(index);
+					$(document).on('click', '#btn'+j , function(){
+						printMessage(param.contents.data.uiScript.uiScript.options[index].id,"user");
+						getJsonFromInbi(param.contents.data.uiScript.uiScript.options[index].id,"bot");
+					})
+					index++;
+					j++;
 				})
 				
 			}, 1000 );
@@ -102,25 +132,15 @@ function makeButtonByDB(output) {
 	});
 }
 
-function insertMessage() {
-  msg = $('.message-input').val();
-  console.log(msg);
-  if ($.trim(msg) == '') {
-    return false;
-  }
-  var id = "user";
-  printMessage(msg,id);
-  setDate();
-  
- 
-  
-  $.ajax({
+function getJsonFromInbi(msg,id){
+	$.ajax({
  		url: '/jsonTest', //apicontrol에서 겟챠!!
  		type: 'GET',
  		data: {value : msg},
  		dataType: 'JSON',
  		success: function (output){
  
+ 			
  			printMessage(output.contents.data.message, output.id);
  			
  			if(output.contents.data.uiScript != null){
@@ -133,6 +153,21 @@ function insertMessage() {
  			}
  		}
    })
+}
+
+function insertMessage() {
+  msg = $('.message-input').val();
+  console.log(msg);
+  if ($.trim(msg) == '') {
+    return false;
+  }
+  var id = "user";
+  printMessage(msg,id);
+  setDate();
+  
+  getJsonFromInbi(msg,id);
+  
+  
    
  
   $('.message-input').val(null);
@@ -158,5 +193,4 @@ $('.button').click(function(){
   $('.menu .items span').toggleClass('active');
    $('.menu .button').toggleClass('active');
 });
-
 
