@@ -7,28 +7,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- id = 메소드 이름과 같게 -->
 
-<select id="getUid" resultType="Code">
-	select codeName
-	from tbl_code
-	where uCodeId is null
+<!-- 도서 대분류 갖고오기 -->
+<select id="getUid" resultType="Code"> 
+<!-- HomeMapper에서 Code getUid -->
+	select * <!-- codeName 열을 갖고 온다 -->
+	from tbl_code <!-- 테이블 이름 -->
+	where uCodeId is null <!-- 데이터 추출 조건 -->
 </select>
 
+<!-- 도서 소분류 갖고오기 -->
 <select id="getId" resultType="Code">
-	select codeName
+	select *
 	from tbl_code
 	where uCodeId is not null
 </select>
 
+<!-- 나이에 맞는 도서 추출 -->
 <select id="getBookByAge" resultType="Product">
 	select *
 	from tbl_product
 	where <![CDATA[minAge<=#{age}]]> and <![CDATA[maxAge>=#{age}]]>
+	<!-- <=, >= 사용하기 위해 CDATA -->
 </select>
 
 <select id="getIdByUid" resultType="Code">
 	select *
 	from tbl_code
-	where uCodeId = #{uCodeId}
+	where uCodeId = #{uC3odeId}
 </select>
   
 
@@ -36,6 +41,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	select *
 	from tbl_product
 	where bookCode = #{user.id} and <![CDATA[minAge<=#{user.age}]]> and <![CDATA[maxAge>=#{user.age}]]>
+</select>
+
+<select id="getBookByAgeAndUid" parameterType="hashmap" resultType="Product">
+	select *
+	from tbl_product
+	where upperCode =#{user.id} and <![CDATA[minAge<=#{user.age}]]> and <![CDATA[maxAge>=#{user.age}]]>
 </select>
 
 

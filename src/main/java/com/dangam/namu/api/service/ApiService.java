@@ -34,4 +34,9 @@ public class ApiService {
 	public List<Product> getBookById(Object param){
 		return apiDao.getBookById(param);
 	}
+	
+	public List<Product> getBookByAgeAndUid(Object param){
+		System.out.println("apiservice"+param);
+		return apiDao.getBookByAgeAndUid(param);
+	}
 }

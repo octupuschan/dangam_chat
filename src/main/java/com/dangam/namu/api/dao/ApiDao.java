@@ -37,4 +37,11 @@ public class ApiDao {
 		return session.selectList(namespace + ".getBookById", param);
 	}
 	
+	public List<Product>  getBookByAgeAndUid(Object param){
+		System.out.println("apidao:"+param);
+		return session.selectList(namespace + ".getBookByAgeAndUid", param);
+	}
+	
+	
+	
 }

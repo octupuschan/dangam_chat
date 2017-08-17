@@ -110,6 +110,23 @@ public class ApiController {
 	  return ResponseEntity.ok(result);
   }
   
+  @GetMapping("/getBookByAgeAndUid") //mj 
+  @ResponseBody
+  public ResponseEntity<Map<String, Object>> getBookByAgeAndUid(
+		  @RequestParam("value_1") Integer age, @RequestParam("value_2") String id)throws Exception
+  {
+	  Map<String, Object> map = new HashMap<String, Object>();
+	  User user = new User(); 
+	  user.setAge(age);
+	  user.setId(id);
+
+	  map.put("user", user);
+	  Map<String, Object> result = new  HashMap<String, Object>();
+	  result.put("contents", apiService.getBookByAgeAndUid(map));
+	  return ResponseEntity.ok(result);
+  }
+  
+  
   @GetMapping("/jsonTest")
   @ResponseBody
   public ResponseEntity<Map<String, Object>> getResoponse(@RequestParam("value") String input){
@@ -154,4 +171,6 @@ public class ApiController {
 	  preference.setPreference(inputPreference);
 	
   }
+  
+ 
 }

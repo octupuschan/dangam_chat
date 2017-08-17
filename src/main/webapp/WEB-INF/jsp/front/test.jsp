@@ -47,8 +47,8 @@
     <div class="messages-content"></div>
   </div>
   <div class="message-box">
-    <textarea type="text" class="message-input" placeholder="Type message..."></textarea>
-    <button type="submit" class="message-submit">Send</button>
+    <textarea type="text" class="message-input" placeholder="메세지를 입력해 주세요"></textarea>
+    <button type="submit" class="message-submit">전송</button>
   </div>
 </div>
   </div>
