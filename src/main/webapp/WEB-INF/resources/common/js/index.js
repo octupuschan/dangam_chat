@@ -29,6 +29,16 @@ $(window).load(function() {
 
 
 function initMessage() {
+	 if ($('.message-input').val() != '') {
+		    return false;
+		  }
+		  $('<div class="message loading new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure><span></span></div>').appendTo($('.mCSB_container'));
+		  updateScrollbar();
+		  var initMessage = "안녕하세요.아람 북스의 전집을 추천하고,소개해주는 아람봇이라고 합니다. 책을 추천하기 위해 몇가지 질문을 드리겠습니다.책 추천을 받기 원하신다면 <시작>이라고 입력해주세요! 또 중간에 처음으로 돌아가고 싶으시다면 언제나 <시작>이라고 입력해 주세요!";
+		  $('.message.loading').remove();
+		  $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+initMessage+ '</div>').appendTo($('.mCSB_container')).addClass('new');
+		  updateScrollbar();
+
 	  if ($('.message-input').val() != '') {
 	    return false;
 	  }
@@ -685,7 +695,7 @@ function preferenceEvent(x) {
 						var details_2 = "1.세이펜 제공 여부:"+pen+"&#10;"+"2.전집 수상 여부"+prize+"&#10;"+"3.Qrcode 제공 여부:"+qrCode+"&#10;"+"4.비디오 제공 여부:"+video;
 						
 						 //$('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+details+ '</div>').appendTo($('.mCSB_container')).addClass('new'); 
-						
+
 						if(imgUrl != null){
 							$('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure><img src="'+imgUrl+'" style="max-width: 100%; height: auto;"></div>').appendTo($('.mCSB_container')).addClass('new');
 						}
@@ -711,6 +721,7 @@ function preferenceEvent(x) {
 						$('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure><img src="'+imgUrl+'" width:80%;height:auto/></div>').appendTo($('.mCSB_container')).addClass('new');
 						
 						 updateScrollbar();
+
 					}
 				  }
 				}
