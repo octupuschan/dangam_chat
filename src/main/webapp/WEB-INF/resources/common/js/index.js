@@ -30,9 +30,9 @@ function initMessage() {
 	  }
 	  $('<div class="message loading new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure><span></span></div>').appendTo($('.mCSB_container'));
 	  updateScrollbar();
-	  var initMessage = "안녕하세요.아람 북스의 전집을 추천하고,소개해주는 아람봇이라고 합니다. 책을 추천하기 위해 몇가지 질문을 드리겠습니다.책 추천을 받기 원하신다면 <시작>이라고 입력해주세요!";
+	  var initMessage = "안녕하세요.아람 북스의 전집을 추천하고,소개해주는 아람봇이라고 합니다. 책을 추천하기 위해 몇가지 질문을 드리겠습니다.책 추천을 받기 원하신다면 <시작>이라고 입력해주세요! 또 중간에 처음으로 돌아가고 싶으시다면 언제나 <시작>이라고 입력해 주세요!";
 	  $('.message.loading').remove();
-	  $('<div class="message new init"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+initMessage+ '</div>').appendTo($('.mCSB_container')).addClass('new');
+	  $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+initMessage+ '</div>').appendTo($('.mCSB_container')).addClass('new');
 	  updateScrollbar();
 }
 
@@ -317,6 +317,7 @@ $(document).on('click','#btn13',function(){
 				}				
 		})		
 		disablePreference();
+		
 })
 
 $(document).on('click','#btn14',function(){
@@ -389,7 +390,7 @@ $(document).on('click','#btn14',function(){
 		preferenceEvent(10);
 		disableChild();
 	})
-
+	
 })
 
 
@@ -437,6 +438,7 @@ $(document).on('click','#btn15',function(){
 		parentPreferenceEvent(4);
 		disableParent();
 	})
+
 
 })
 
