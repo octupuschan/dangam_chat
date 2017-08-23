@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.dangam.namu.api.dto.Branch;
 import com.dangam.namu.api.dto.Code;
 import com.dangam.namu.api.dto.Product;
 
@@ -16,4 +17,5 @@ public interface HomeMapper {
 	List<Code> getIdByUid(String uid);
 	List<Product> getBookById(String bookCode, Integer age);
 	List<Product> getBookByAgeAndUid(String bookCode, Integer age);
+	List<Branch> getBranchInfo(String broadLocation,String narrowLocation);
 }

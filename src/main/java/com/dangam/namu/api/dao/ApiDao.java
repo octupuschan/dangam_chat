@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.dangam.namu.api.dto.Branch;
 import com.dangam.namu.api.dto.Code;
 import com.dangam.namu.api.dto.Product;
 
@@ -40,6 +41,11 @@ public class ApiDao {
 	public List<Product>  getBookByAgeAndUid(Object param){
 		System.out.println("apidao:"+param);
 		return session.selectList(namespace + ".getBookByAgeAndUid", param);
+	}
+	
+	public List<Branch> getBranchInfo(Object param){
+		
+		return session.selectList(namespace + ".getBranchInfo", param);
 	}
 	
 	

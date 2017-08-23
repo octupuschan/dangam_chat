@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dangam.namu.api.dao.ApiDao;
+import com.dangam.namu.api.dto.Branch;
 import com.dangam.namu.api.dto.Code;
 import com.dangam.namu.api.dto.Product;
 
@@ -38,5 +39,8 @@ public class ApiService {
 	public List<Product> getBookByAgeAndUid(Object param){
 		System.out.println("apiservice"+param);
 		return apiDao.getBookByAgeAndUid(param);
+	}
+	public List<Branch>getBranchInfo(Object param){
+		return apiDao.getBranchInfo(param);
 	}
 }
