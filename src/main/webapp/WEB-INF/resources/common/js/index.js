@@ -232,6 +232,51 @@ $(document).on('click','#btn13',function(){
 		 	data: {value :age},
 			success:function(output){
 					for(var i =0;i<output.contents.length;i++){
+						var bookName = output.contents[i].bookName;
+						var component = output.contents[i].component;
+						var feature = output.contents[i].feature;
+						var minAge = output.contents[i].minAge;
+						var maxAge = output.contents[i].maxAge;
+						var pen;
+						if(output.contents[i].pen=="1")
+							pen = "제공 됨.";
+						else
+							pen = "제공되지 않음."
+						var prize;
+						if(output.contents[i].prize=="1")
+							prize = "수상 기록 있음.";
+						else
+							prize = "";
+						var qrCode;
+						if(output.contents[i].qrcode)
+							qrCode="제공 됨.";
+						else
+							qrCode="제공되지 않음."; 
+						var summary = output.contents[i].summary;
+						var url;
+						if(output.contents[i].url=="NULL")
+							url = "제공되지 않음.";
+						else
+							url = output.contents[i].url;
+						var video;
+						if(output.contents[i].video=="1")
+							video = "제공 됨";
+						else
+							video = "제공되지 않음.";
+						var writer;
+						if(output.contents[i].writer=="1")
+							writer = "수상 기록 있음.";
+						else 
+							writer ="";
+						var price = output.contents[i].price;
+						
+						var details = "1.책 제목 :"+bookName+"&#10;"+"2.책 구성 요소 :" +component +"&#10;"+ "3.책 특징:"+component+"&#10;"+
+								"4.대상 연령 :"+minAge+"~"+maxAge+"&#10;"+"5.전집 가격:"+price+"&#10;"+"6.세이펜 제공 여부:"+pen+"&#10;"+
+								"7.전집 수상 여부"+prize+"&#10;"+"8.Qrcode 제공 여부:"+qrCode+"&#10;"+"9.비디오 제공 여부:"+video;
+						
+						 $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+details+ '</div>').appendTo($('.mCSB_container')).addClass('new');
+						
+						/*
 						 $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+output.contents[i].bookName+ '</div>').appendTo($('.mCSB_container')).addClass('new');
 			 			 $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+output.contents[i].component+ '</div>').appendTo($('.mCSB_container')).addClass('new');
 			 			 $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+output.contents[i].feature+ '</div>').appendTo($('.mCSB_container')).addClass('new');
@@ -245,6 +290,7 @@ $(document).on('click','#btn13',function(){
 			 			 $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+output.contents[i].url+ '</div>').appendTo($('.mCSB_container')).addClass('new');
 			 			 $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+output.contents[i].video+ '</div>').appendTo($('.mCSB_container')).addClass('new');
 			 			 $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+output.contents[i].writer+ '</div>').appendTo($('.mCSB_container')).addClass('new');
+						 */
 						 updateScrollbar();
 					}
 				}				
@@ -374,6 +420,51 @@ function parentPreferenceEvent(x){
 				}
 				else{
 					for(var i =0;i<output.contents.length;i++){
+						var bookName = output.contents[i].bookName;
+						var component = output.contents[i].component;
+						var feature = output.contents[i].feature;
+						var minAge = output.contents[i].minAge;
+						var maxAge = output.contents[i].maxAge;
+						var pen;
+						if(output.contents[i].pen=="1")
+							pen = "제공 됨.";
+						else
+							pen = "제공되지 않음."
+						var prize;
+						if(output.contents[i].prize=="1")
+							prize = "수상 기록 있음.";
+						else
+							prize = "";
+						var qrCode;
+						if(output.contents[i].qrcode)
+							qrCode="제공 됨.";
+						else
+							qrCode="제공되지 않음."; 
+						var summary = output.contents[i].summary;
+						var url;
+						if(output.contents[i].url=="NULL")
+							url = "제공되지 않음.";
+						else
+							url = output.contents[i].url;
+						var video;
+						if(output.contents[i].video=="1")
+							video = "제공 됨";
+						else
+							video = "제공되지 않음.";
+						var writer;
+						if(output.contents[i].writer=="1")
+							writer = "수상 기록 있음.";
+						else 
+							writer ="";
+						var price = output.contents[i].price;
+						
+						var details = "1.책 제목 :"+bookName+"&#10;"+"2.책 구성 요소 :" +component +"&#10;"+ "3.책 특징:"+component+"&#10;"+
+								"4.대상 연령 :"+minAge+"~"+maxAge+"&#10;"+"5.전집 가격:"+price+"&#10;"+"6.세이펜 제공 여부:"+pen+"&#10;"+
+								"7.전집 수상 여부"+prize+"&#10;"+"8.Qrcode 제공 여부:"+qrCode+"&#10;"+"9.비디오 제공 여부:"+video;
+						
+						 $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+details+ '</div>').appendTo($('.mCSB_container')).addClass('new');
+						
+						/*
 						 $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+output.contents[i].bookName+ '</div>').appendTo($('.mCSB_container')).addClass('new');
 			 			 $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+output.contents[i].component+ '</div>').appendTo($('.mCSB_container')).addClass('new');
 			 			 $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+output.contents[i].feature+ '</div>').appendTo($('.mCSB_container')).addClass('new');
@@ -387,6 +478,7 @@ function parentPreferenceEvent(x){
 			 			 $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+output.contents[i].url+ '</div>').appendTo($('.mCSB_container')).addClass('new');
 			 			 $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+output.contents[i].video+ '</div>').appendTo($('.mCSB_container')).addClass('new');
 			 			 $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+output.contents[i].writer+ '</div>').appendTo($('.mCSB_container')).addClass('new');
+						 */
 						 updateScrollbar();
 					}
 					updateScrollbar();
@@ -426,7 +518,57 @@ function preferenceEvent(x) {
 					}
 					else{
 					for(var i =0;i<output.contents.length;i++){
-						 $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+output.contents[i].bookName+ '</div>').appendTo($('.mCSB_container')).addClass('new');
+						var imgUrl = output.contents[i].imgurl;
+						var bookName = output.contents[i].bookName;
+						var component = output.contents[i].component;
+						var feature = output.contents[i].feature;
+						var minAge = output.contents[i].minAge;
+						var maxAge = output.contents[i].maxAge;
+						var pen;
+						if(output.contents[i].pen=="1")
+							pen = "제공 됨.";
+						else
+							pen = "제공되지 않음."
+						var prize;
+						if(output.contents[i].prize=="1")
+							prize = "수상 기록 있음.";
+						else
+							prize = "";
+						var qrCode;
+						if(output.contents[i].qrcode)
+							qrCode="제공 됨.";
+						else
+							qrCode="제공되지 않음."; 
+						var summary = output.contents[i].summary;
+						var url;
+						if(output.contents[i].url=="NULL")
+							url = "제공되지 않음.";
+						else
+							url = output.contents[i].url;
+						var video;
+						if(output.contents[i].video=="1")
+							video = "제공 됨";
+						else
+							video = "제공되지 않음.";
+						var writer;
+						if(output.contents[i].writer=="1")
+							writer = "수상 기록 있음.";
+						else 
+							writer ="";
+						var price = output.contents[i].price;
+						
+						var details = "1.책 제목 :"+bookName+"&#10;"+"2.책 구성 요소 :" +component +"&#10;"+ "3.책 특징:"+component+"&#10;"+
+								"4.대상 연령 :"+minAge+"~"+maxAge+"&#10;"+"5.전집 가격:"+price+"&#10;"+"6.세이펜 제공 여부:"+pen+"&#10;"+
+								"7.전집 수상 여부"+prize+"&#10;"+"8.Qrcode 제공 여부:"+qrCode+"&#10;"+"9.비디오 제공 여부:"+video;
+						
+						 //$('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+details+ '</div>').appendTo($('.mCSB_container')).addClass('new'); 
+						
+						$('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+output.contents[i].bookName+ '</div>').appendTo($('.mCSB_container')).addClass('new');
+						$('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure><img src='+imgUrl+'/></div>').appendTo($('.mCSB_container')).addClass('new');
+						
+						
+						
+						/*$('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+output.contents[i].bookName+ '</div>').appendTo($('.mCSB_container')).addClass('new');
 			 			 $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+output.contents[i].component+ '</div>').appendTo($('.mCSB_container')).addClass('new');
 			 			 $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+output.contents[i].feature+ '</div>').appendTo($('.mCSB_container')).addClass('new');
 			 			 $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+output.contents[i].minAge+ '</div>').appendTo($('.mCSB_container')).addClass('new');
@@ -439,6 +581,7 @@ function preferenceEvent(x) {
 			 			 $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+output.contents[i].url+ '</div>').appendTo($('.mCSB_container')).addClass('new');
 			 			 $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+output.contents[i].video+ '</div>').appendTo($('.mCSB_container')).addClass('new');
 			 			 $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+output.contents[i].writer+ '</div>').appendTo($('.mCSB_container')).addClass('new');
+						 */
 						 updateScrollbar();
 					}
 				  }

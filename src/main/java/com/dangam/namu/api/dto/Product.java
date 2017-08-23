@@ -8,6 +8,13 @@ public class Product {
 	private String bookCode;
 	private int pen;
 	private int video;
+	private String imgurl;
+	public String getImgurl() {
+		return imgurl;
+	}
+	public void setImgurl(String imgurl) {
+		this.imgurl = imgurl;
+	}
 	private String url;
 	private String component;
 	private int price;
