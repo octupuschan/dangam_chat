@@ -26,6 +26,8 @@ $(window).load(function() {
 });
 
 
+
+
 function initMessage() {
 	  if ($('.message-input').val() != '') {
 	    return false;
@@ -137,25 +139,68 @@ function getJsonFromInbi(msg,id){
 }
 
 function insertMessage() {
-  msg = $('.message-input').val();
-  console.log(msg);
-  if ($.trim(msg) == '') {
-    return false;
-  }
-  if(msg=="시작")
-	  {
-	  j=0;
-	  $('.message.new').remove();
-	  $('.list').remove();
-	  $('.message.message-personal.new').remove();
-	  }
-  var id = "user";
-  printMessage(msg,id);
-  getJsonFromInbi(msg,id);
+	msg = $('.message-input').val();
+	console.log(msg);
+	if ($.trim(msg) == '') {
+		return false;
+	}
+	if(msg=="시작"){
+		j=0;
+		$('.message.new').remove();
+		$('.list').remove();
+		$('.message.message-personal.new').remove();
+	}
+	var id = "user";
+	printMessage(msg,id);
+	getJsonFromInbi(msg,id);
   
  
-  $('.message-input').val(null);
-  updateScrollbar();}
+	$('.message-input').val(null);
+	updateScrollbar();
+ }
+
+function getLocation() {
+	  if (navigator.geolocation) { //
+	    navigator.geolocation.getCurrentPosition(function(position) {
+	    	alert(position.coords.latitude +","+position.coords.longitude);	
+	    	return getAddress(position.coords.latitude,position.coords.longitude);
+	      
+	    }, function(error) {
+	      console.error(error);
+	    }, {
+	      enableHighAccuracy: false,
+	      maximumAge: 0,
+	      timeout: Infinity
+	    });
+	  } else {
+	    alert('GPS를 켜주세요.');
+	  }
+}
+
+
+function getAddress(lat, lgt){
+	var key = "0cb38252985b6cd1aeb88b334813925c";
+	$.ajax({
+    	url: 'https://dapi.kakao.com/v2/local/geo/coord2address.json',
+    	type:'GET',
+    	data:{y : lat, x : lgt, appkey : key},
+    	dataType: 'JSON',
+ 		success: function (output){
+ 			var mainCity = output.documents[0].address.region_1depth_name;
+ 			var subCity = output.documents[0].address.region_1depth_name;
+ 			
+ 			$.ajax({
+ 				url: '/getBranchInfo',
+ 				type: 'GET',
+ 				data:{value_1 : mainCity, value_2 : subCity},
+ 				dataType: 'JSON',
+ 				success: function (output){
+ 					//printMessage(,"bot");
+ 				}
+ 			})
+ 		}
+	})		
+}
 
 
 $('.message-submit').click(function() {
@@ -262,37 +307,45 @@ $(document).on('click','#btn13',function(){
 						var minAge = output.contents[i].minAge;
 						var maxAge = output.contents[i].maxAge;
 						var imgUrl = output.contents[i].imgurl;
+						
 						var pen;
 						if(output.contents[i].pen=="1")
 							pen = "제공 됨.";
 						else
-							pen = "제공되지 않음."
+							pen = "제공되지 않음.";
+						
 						var prize;
 						if(output.contents[i].prize=="1")
 							prize = "수상 기록 있음.";
 						else
 							prize = "";
+						
 						var qrCode;
 						if(output.contents[i].qrcode)
 							qrCode="제공 됨.";
 						else
 							qrCode="제공되지 않음."; 
+						
 						var summary = output.contents[i].summary;
+						
 						var url;
 						if(output.contents[i].url=="NULL")
 							url = "제공되지 않음.";
 						else
 							url = output.contents[i].url;
+						
 						var video;
 						if(output.contents[i].video=="1")
 							video = "제공 됨";
 						else
 							video = "제공되지 않음.";
+						
 						var writer;
 						if(output.contents[i].writer=="1")
 							writer = "수상 기록 있음.";
 						else 
 							writer ="";
+						
 						var price = output.contents[i].price;
 						
 						var details_1 = "1.책 구성 요소 :" +component +"&#10;"+ "2.책 특징 :"+feature+"&#10;"+"3.책 가격 :"+price ;
