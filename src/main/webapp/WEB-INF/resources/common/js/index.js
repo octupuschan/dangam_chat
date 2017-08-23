@@ -633,7 +633,6 @@ function preferenceEvent(x) {
 						
 						 //$('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+details+ '</div>').appendTo($('.mCSB_container')).addClass('new'); 
 						
-<<<<<<< HEAD
 						if(imgUrl != null){
 							$('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure><img src="'+imgUrl+'" style="max-width: 100%; height: auto;"></div>').appendTo($('.mCSB_container')).addClass('new');
 						}
@@ -654,28 +653,11 @@ function preferenceEvent(x) {
 			 			index++;
 			 			
 					    updateScrollbar();
-=======
+
 						$('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+output.contents[i].bookName+ '</div>').appendTo($('.mCSB_container')).addClass('new');
 						$('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure><img src="'+imgUrl+'" width:80%;height:auto/></div>').appendTo($('.mCSB_container')).addClass('new');
 						
-						
-						
-						/*$('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+output.contents[i].bookName+ '</div>').appendTo($('.mCSB_container')).addClass('new');
-			 			 $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+output.contents[i].component+ '</div>').appendTo($('.mCSB_container')).addClass('new');
-			 			 $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+output.contents[i].feature+ '</div>').appendTo($('.mCSB_container')).addClass('new');
-			 			 $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+output.contents[i].minAge+ '</div>').appendTo($('.mCSB_container')).addClass('new');
-			 			 $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+output.contents[i].maxAge+ '</div>').appendTo($('.mCSB_container')).addClass('new');
-			 			 $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+output.contents[i].pen+ '</div>').appendTo($('.mCSB_container')).addClass('new');
-			 			 $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+output.contents[i].price+ '</div>').appendTo($('.mCSB_container')).addClass('new');
-			 			 $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+output.contents[i].prize+ '</div>').appendTo($('.mCSB_container')).addClass('new');
-			 			 $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+output.contents[i].qrcode+ '</div>').appendTo($('.mCSB_container')).addClass('new');
-			 			 $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+output.contents[i].summary+ '</div>').appendTo($('.mCSB_container')).addClass('new');
-			 			 $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+output.contents[i].url+ '</div>').appendTo($('.mCSB_container')).addClass('new');
-			 			 $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+output.contents[i].video+ '</div>').appendTo($('.mCSB_container')).addClass('new');
-			 			 $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+output.contents[i].writer+ '</div>').appendTo($('.mCSB_container')).addClass('new');
-						 */
 						 updateScrollbar();
->>>>>>> b8d81ca959e89ef437aae5a9647ede92e59e957a
 					}
 				  }
 				}
