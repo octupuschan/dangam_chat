@@ -9,12 +9,6 @@ public class Product {
 	private int pen;
 	private int video;
 	private String imgurl;
-	public String getImgurl() {
-		return imgurl;
-	}
-	public void setImgurl(String imgurl) {
-		this.imgurl = imgurl;
-	}
 	private String url;
 	private String component;
 	private int price;
@@ -114,5 +108,10 @@ public class Product {
 	public void setFeature(String feature) {
 		this.feature = feature;
 	}
-	
+	public String getImgurl() {
+		return imgurl;
+	}
+	public void setImgurl(String imgurl) {
+		this.imgurl = imgurl;
+	}
 }
