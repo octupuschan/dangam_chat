@@ -32,7 +32,7 @@ function initMessage() {
 	  updateScrollbar();
 	  var initMessage = "안녕하세요.아람 북스의 전집을 추천하고,소개해주는 아람봇이라고 합니다. 책을 추천하기 위해 몇가지 질문을 드리겠습니다.책 추천을 받기 원하신다면 <시작>이라고 입력해주세요!";
 	  $('.message.loading').remove();
-	  $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+initMessage+ '</div>').appendTo($('.mCSB_container')).addClass('new');
+	  $('<div class="message new init"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+initMessage+ '</div>').appendTo($('.mCSB_container')).addClass('new');
 	  updateScrollbar();
 }
 
@@ -139,6 +139,13 @@ function insertMessage() {
   if ($.trim(msg) == '') {
     return false;
   }
+  if(msg=="시작")
+	  {
+	  j=0;
+	  $('.message.new').remove();
+	  $('.list').remove();
+	  $('.message.message-personal.new').remove();
+	  }
   var id = "user";
   printMessage(msg,id);
   getJsonFromInbi(msg,id);
@@ -168,60 +175,74 @@ $(document).on('click', '#btn0' , function(){
 	var genderMsg ="남자 아이입니다.";
 	var gender = "Male";
 	setGender(genderMsg,gender);
+	disableGender();
+
 })
 
 $(document).on('click', '#btn1' , function(){ 
 	var genderMsg = "여자 아이입니다.";
 	var gender = "Female";
 	setGender(genderMsg,gender);
+	disableGender();
 })
 
 $(document).on('click','#btn2',function(){
 	age=0;
 	setAge(age);
+	disableAge();
 })
 
 $(document).on('click','#btn3',function(){
 	age=1;
 	setAge(age);
+	disableAge();
 })
 
 $(document).on('click','#btn4',function(){
 	age=2;
 	setAge(age);
+	disableAge();
 })
 $(document).on('click','#btn5',function(){
 	age=3;
 	setAge(age);
+	disableAge();
  		
 })
 $(document).on('click','#btn6',function(){
 	age=4;
 	setAge(age);
+	disableAge();
 })
 $(document).on('click','#btn7',function(){
 	age=5;
 	setAge(age);
+	disableAge();
 })
 $(document).on('click','#btn8',function(){
 	age=6;
 	setAge(age);
+	disableAge();
 })
 $(document).on('click','#btn9',function(){
 	age=7;
 	setAge(age);
+	disableAge();
 })
 $(document).on('click','#btn10',function(){
 	age=8;
 	setAge(age);
+	disableAge();
 })
 $(document).on('click','#btn11',function(){
 	age=9;
 	setAge(age);
+	disableAge();
 })
 $(document).on('click','#btn12',function(){
 	age=10;
 	setAge(age);
+	disableAge();
 })
 $(document).on('click','#btn13',function(){
 		var input = "연령에 맞는 책을 읽히고 싶어요."
@@ -295,6 +316,7 @@ $(document).on('click','#btn13',function(){
 					}
 				}				
 		})		
+		disablePreference();
 })
 
 $(document).on('click','#btn14',function(){
@@ -318,39 +340,54 @@ $(document).on('click','#btn14',function(){
 	 		}
 	})		
 	
+	disablePreference();
+	
+	
 
 	$(document).on('click','#tmpButton0',function(){
 		preferenceEvent(0);
+		disableChild();
 	})
 	$(document).on('click','#tmpButton1',function(){
 		preferenceEvent(1);
+		disableChild();
 	})
 	$(document).on('click','#tmpButton2',function(){
 		preferenceEvent(2);
+		disableChild();
 	})
 	$(document).on('click','#tmpButton3',function(){
 		preferenceEvent(3);
+		disableChild();
 	})
 	$(document).on('click','#tmpButton4',function(){
 		preferenceEvent(4);
+		disableChild();
 	})
 	$(document).on('click','#tmpButton5',function(){
 		preferenceEvent(5);
+		disableChild();
 	})
 	$(document).on('click','#tmpButton6',function(){
 		preferenceEvent(6);
+		disableChild();
 	})
 	$(document).on('click','#tmpButton7',function(){
 		preferenceEvent(7);
+		disableChild();
+
 	})
 	$(document).on('click','#tmpButton8',function(){
 		preferenceEvent(8);
+		disableChild();
 	})
 	$(document).on('click','#tmpButton9',function(){
 		preferenceEvent(9);
+		disableChild();
 	})
 	$(document).on('click','#tmpButton10',function(){
 		preferenceEvent(10);
+		disableChild();
 	})
 
 })
@@ -378,27 +415,29 @@ $(document).on('click','#btn15',function(){
  		}
 	})
 	
+	disablePreference();
+	
 	$(document).on('click','#tmpButton20',function(){
 		parentPreferenceEvent(0);
+		disableParent();
 	})
 	$(document).on('click','#tmpButton21',function(){
 		parentPreferenceEvent(1);
+		disableParent();
 	})
 	$(document).on('click','#tmpButton22',function(){
 		parentPreferenceEvent(2);
+		disableParent();
 	})
 	$(document).on('click','#tmpButton23',function(){
 		parentPreferenceEvent(3);
+		disableParent();
 	})
 	$(document).on('click','#tmpButton24',function(){
 		parentPreferenceEvent(4);
+		disableParent();
 	})
-	
-	
-	
-	
-	
-	
+
 })
 
 function parentPreferenceEvent(x){
@@ -564,7 +603,7 @@ function preferenceEvent(x) {
 						 //$('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+details+ '</div>').appendTo($('.mCSB_container')).addClass('new'); 
 						
 						$('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+output.contents[i].bookName+ '</div>').appendTo($('.mCSB_container')).addClass('new');
-						$('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure><img src='+imgUrl+'/></div>').appendTo($('.mCSB_container')).addClass('new');
+						$('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure><img src="'+imgUrl+'" width:80%;height:auto/></div>').appendTo($('.mCSB_container')).addClass('new');
 						
 						
 						
@@ -612,6 +651,48 @@ function setAge(age){
 		getJsonFromInbi(input,"bot"); //버튼에 대한응답. 
 }
 
+function disableGender(){
+	$("#btn0").prop("disabled",true);
+	$("#btn1").prop("disabled",true);
+}
+function disableAge(){
+	$("#btn2").prop("disabled",true);
+	$("#btn3").prop("disabled",true);
+	$("#btn4").prop("disabled",true);
+	$("#btn5").prop("disabled",true);
+	$("#btn6").prop("disabled",true);
+	$("#btn7").prop("disabled",true);
+	$("#btn8").prop("disabled",true);
+	$("#btn9").prop("disabled",true);
+	$("#btn10").prop("disabled",true);
+	$("#btn11").prop("disabled",true);
+	$("#btn12").prop("disabled",true);
+}
+function disablePreference(){
+	$("#btn13").prop("disabled",true);
+	$("#btn14").prop("disabled",true);
+	$("#btn15").prop("disabled",true);
+}
+function disableChild(){		
+	$("#tmpButton0").prop("disabled",true);
+	$("#tmpButton1").prop("disabled",true);
+	$("#tmpButton2").prop("disabled",true);
+	$("#tmpButton3").prop("disabled",true);
+	$("#tmpButton4").prop("disabled",true);
+	$("#tmpButton5").prop("disabled",true);
+	$("#tmpButton6").prop("disabled",true);
+	$("#tmpButton7").prop("disabled",true);
+	$("#tmpButton8").prop("disabled",true);
+	$("#tmpButton9").prop("disabled",true);
+	$("#tmpButton10").prop("disabled",true);
+}
+function disableParent(){
+	$("#tmpButton20").prop("disabled",true);
+	$("#tmpButton21").prop("disabled",true);
+	$("#tmpButton22").prop("disabled",true);
+	$("#tmpButton23").prop("disabled",true);
+	$("#tmpButton24").prop("disabled",true);
+}
 
 
 
