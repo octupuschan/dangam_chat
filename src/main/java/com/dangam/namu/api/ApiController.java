@@ -43,16 +43,14 @@ public class ApiController {
   @GetMapping("/arambooks")
   public ResponseEntity<Test> viewMain() {
 	Sub sub = new Sub();
-	sub.setProp01("��⵵");
-	sub.setProp02("�����");
-	
+
 	Sub arr[] = new Sub[3];
 	arr[0]=sub;
 	  
     Test test = new Test();
     test.setProp01("38.999");
     test.setProp02("hihi");
-    test.setProp03("�ܰ��ܰ�");
+    test.setProp03("hihi");
     test.setProp04(sub);
     test.setProp05(arr);
     
@@ -126,8 +124,6 @@ public class ApiController {
 	  result.put("contents", apiService.getBookByAgeAndUid(map));
 	  return ResponseEntity.ok(result);
   }
-  
-  
   @GetMapping("/getBranchInfo")
   @ResponseBody
   public ResponseEntity<Map<String, Object>> getBookByAgeAndUid(
@@ -144,7 +140,7 @@ public class ApiController {
 	  return ResponseEntity.ok(result);
   }
   
-  
+ 
   @GetMapping("/jsonTest")
   @ResponseBody
   public ResponseEntity<Map<String, Object>> getResoponse(@RequestParam("value") String input){
@@ -159,8 +155,8 @@ public class ApiController {
 	}
 	  
 	  Map<String, Object> result = new HashMap<String, Object>(); //String - key Object- value 
-	  //Object의 용도?? - 
-	  result.put("contents", response); //접근하려면 contents로 접근...!! 
+	  
+	  result.put("contents", response);
 	  result.put("id", "bot");
 	  
 	  return ResponseEntity.ok(result);
@@ -190,5 +186,6 @@ public class ApiController {
 	
   }
   
+
  
 }

@@ -17,6 +17,4 @@ public class Location {
 	public void setNarrowLocation(String narrowLocation) {
 		this.narrowLocation = narrowLocation;
 	}
-	
-	
 }

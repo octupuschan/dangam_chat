@@ -40,7 +40,8 @@ public class ApiService {
 		System.out.println("apiservice"+param);
 		return apiDao.getBookByAgeAndUid(param);
 	}
+	
 	public List<Branch>getBranchInfo(Object param){
-		return apiDao.getBranchInfo(param);
+		 	return apiDao.getBranchInfo(param);	
 	}
 }

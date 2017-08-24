@@ -44,7 +44,6 @@ public class ApiDao {
 	}
 	
 	public List<Branch> getBranchInfo(Object param){
-		
 		return session.selectList(namespace + ".getBranchInfo", param);
 	}
 	
