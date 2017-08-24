@@ -49,7 +49,7 @@ function updateScrollbar() {
 }
 
 function printMessage(msg, id){ //그냥 inbi의 텍스트(not uiScript) 와 user의 인풋만 처리. 
-    if(id==="user"){
+    if(id=="user"){
       $('<div class="message message-personal">' + msg + '</div>').appendTo($('.mCSB_container')).addClass('new'); 
       updateScrollbar();
     }
@@ -68,7 +68,7 @@ function makeButton(param) {
 	console.log(result);
 	
 
-	$.each(result, function(k,v){//반복문 한번 돌때마다 실행할 함수. 
+	$.each(result, function(k,v){ // 반복문 한번 돌때마다 실행할 함수. 
 		var dynamicTag = "<div class='list'><input type='button' id='btn"+ j +"' value='" + result[k].text + "'/></div>";
 		$(dynamicTag).appendTo($('.mCSB_container'));
 	    updateScrollbar();
@@ -78,7 +78,7 @@ function makeButton(param) {
 	
 }
 
-function makeButtonByDB(param) { //현재 이용x
+function makeButtonByDB(param) { // 현재 이용x
 
 	$.ajax({
 		url: '/'+param.contents.data.uiScript.name,
@@ -163,7 +163,7 @@ function insertMessage() {
  }
 
 function getLocation() {
-	  if (navigator.geolocation) { //
+	  if (navigator.geolocation) { 
 	    navigator.geolocation.getCurrentPosition(function(position) {
 	    	getAddress(position.coords.latitude,position.coords.longitude);
 	    }, function(error) {
@@ -187,11 +187,11 @@ function getAddress(lat, lgt){
     	data:{y : lat, x : lgt, appkey : key},
     	dataType: 'JSON',
  		success: function (output){
- 			//var mainCity = output.documents[0].address.region_1depth_name;
- 			//var subCity = output.documents[0].address.region_1depth_name;
- 			var mainCity = "서울";
- 			var subCity = "강북구";
+ 			var mainCity = output.documents[0].address.region_1depth_name;
+ 			var subCity = output.documents[0].address.region_2depth_name;
  			
+ 			console.log(mainCity);
+ 			console.log(subCity);
  			$.ajax({
  				url: '/getBranchInfo',
  				type: 'GET',
@@ -366,35 +366,50 @@ $(document).on('click','#btn13',function(){
 						
 						var price = output.contents[i].price;
 						
-						var details_1 = "1.책 구성 요소 :" +component +"&#10;"+ "2.책 특징 :"+feature+"&#10;"+"3.책 가격 :"+price ;
+						var details_1 = "1.책 구성 요소 :" +component ;
 						
-						var details_2 = "1.세이펜 제공 여부:"+pen+"&#10;"+"2.전집 수상 여부"+prize+"&#10;"+"3.Qrcode 제공 여부:"+qrCode+"&#10;"+"4.비디오 제공 여부:"+video;
+						var details_2 = "2.책 특징 :"+feature +"3.책 가격 :"+price;
+						
+						var details_3 = "1.세이펜 제공 여부:"+pen+"2.전집 수상 여부"+prize+"3.Qrcode 제공 여부:"+qrCode+"4.비디오 제공 여부:"+video;
 						
 						 //$('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+details+ '</div>').appendTo($('.mCSB_container')).addClass('new'); 
-						
+
 						if(imgUrl != null){
 							$('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure><img src="'+imgUrl+'" style="max-width: 100%; height: auto;"></div>').appendTo($('.mCSB_container')).addClass('new');
 						}
-						printMessage("1.책 이름 :"+bookName + "2.책 요약 :" + summary + "3.대상 연령 :"+minAge+"~"+maxAge,"bot");
 						
-						var dynamicTag = "<div class='list'><input type='button' id='tmpButton"+ index +"' value='구성 및 가격'/></div>";
+						printMessage("1.책 이름 :"+bookName,"bot");
+						printMessage("2.책 요약 :" + summary,"bot");
+						printMessage("3.대상 연령 :"+minAge+"~"+maxAge,"bot");
+						
+						var dynamicTag = "<div class='list'><input type='button' id='tmpButton"+ index +"' value='구성'/></div>";
 			 			$(dynamicTag).appendTo($('.mCSB_container'));
 			 			$(document).on('click','#tmpButton'+ index,function(){
 			 				printMessage(details_1,"bot");
 			 			})
 			 			index ++;
 			 			
-			 			var dynamicTag = "<div class='list'><input type='button' id='tmpButton"+ index +"' value='추가 정보'/></div>";
+			 			var dynamicTag = "<div class='list'><input type='button' id='tmpButton"+ index +"' value='책 특징 및 가격'/></div>";
 			 			$(dynamicTag).appendTo($('.mCSB_container'));
 			 			$(document).on('click','#tmpButton'+ index,function(){
 			 				printMessage(details_2,"bot");
 			 			})
+			 			index ++;
+			 			
+			 			var dynamicTag = "<div class='list'><input type='button' id='tmpButton"+ index +"' value='추가 정보'/></div>";
+			 			$(dynamicTag).appendTo($('.mCSB_container'));
+			 			$(document).on('click','#tmpButton'+ index,function(){
+			 				printMessage(details_3,"bot");
+			 			})
 			 			index++;
 			 			
-			 			printMessage("가까운 지점에 대한 정보를 알려드릴까요?","bot");
+					    updateScrollbar();
+
 			 			
-			 			updateScrollbar();
+			 			
 					}
+					printMessage("가까운 지점에 대한 정보를 알려드릴까요?","bot");
+					updateScrollbar();
 				}				
 		})		
 		disablePreference();
@@ -589,35 +604,47 @@ function parentPreferenceEvent(x){
 						
 						var price = output.contents[i].price;
 						
-						var details_1 = "1.책 구성 요소 :" +component +"&#10;"+ "2.책 특징 :"+feature+"&#10;"+"3.책 가격 :"+price ;
+						var details_1 = "1.책 구성 요소 :" +component ;
 						
-						var details_2 = "1.세이펜 제공 여부:"+pen+"&#10;"+"2.전집 수상 여부"+prize+"&#10;"+"3.Qrcode 제공 여부:"+qrCode+"&#10;"+"4.비디오 제공 여부:"+video;
+						var details_2 = "2.책 특징 :"+feature +"3.책 가격 :"+price;
+						
+						var details_3 = "1.세이펜 제공 여부:"+pen+"2.전집 수상 여부"+prize+"3.Qrcode 제공 여부:"+qrCode+"4.비디오 제공 여부:"+video;
 						
 						 //$('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+details+ '</div>').appendTo($('.mCSB_container')).addClass('new'); 
-						
+
 						if(imgUrl != null){
 							$('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure><img src="'+imgUrl+'" style="max-width: 100%; height: auto;"></div>').appendTo($('.mCSB_container')).addClass('new');
 						}
-						printMessage("1.책 이름 :"+bookName + "2.책 요약 :" + summary + "3.대상 연령 :"+minAge+"~"+maxAge,"bot");
 						
-						var dynamicTag = "<div class='list'><input type='button' id='tmpButton"+ index +"' value='구성 및 가격'/></div>";
+						printMessage("1.책 이름 :"+bookName,"bot");
+						printMessage("2.책 요약 :" + summary,"bot");
+						printMessage("3.대상 연령 :"+minAge+"~"+maxAge,"bot");
+						
+						var dynamicTag = "<div class='list'><input type='button' id='tmpButton"+ index +"' value='구성'/></div>";
 			 			$(dynamicTag).appendTo($('.mCSB_container'));
 			 			$(document).on('click','#tmpButton'+ index,function(){
 			 				printMessage(details_1,"bot");
 			 			})
 			 			index ++;
 			 			
-			 			var dynamicTag = "<div class='list'><input type='button' id='tmpButton"+ index +"' value='추가 정보'/></div>";
+			 			var dynamicTag = "<div class='list'><input type='button' id='tmpButton"+ index +"' value='책 특징 및 가격'/></div>";
 			 			$(dynamicTag).appendTo($('.mCSB_container'));
 			 			$(document).on('click','#tmpButton'+ index,function(){
 			 				printMessage(details_2,"bot");
 			 			})
-			 			index++;
-						
-			 			printMessage("가까운 지점에 대한 정보를 알려드릴까요?","bot");
+			 			index ++;
 			 			
-						updateScrollbar();
+			 			var dynamicTag = "<div class='list'><input type='button' id='tmpButton"+ index +"' value='추가 정보'/></div>";
+			 			$(dynamicTag).appendTo($('.mCSB_container'));
+			 			$(document).on('click','#tmpButton'+ index,function(){
+			 				printMessage(details_3,"bot");
+			 			})
+			 			index++;
+			 			
+					    updateScrollbar();
+			 			
 					}
+					printMessage("가까운 지점에 대한 정보를 알려드릴까요?","bot");
 					updateScrollbar();
 				}
 			}
@@ -702,37 +729,47 @@ function preferenceEvent(x) {
 						else 
 							writer ="";
 						
-						var details_1 = "1.책 구성 요소 :" +component +"&#10;"+ "2.책 특징 :"+feature+"&#10;"+"3.책 가격 :"+price ;
+						var details_1 = "1.책 구성 요소 :" +component ;
 						
-						var details_2 = "1.세이펜 제공 여부:"+pen+"&#10;"+"2.전집 수상 여부"+prize+"&#10;"+"3.Qrcode 제공 여부:"+qrCode+"&#10;"+"4.비디오 제공 여부:"+video;
+						var details_2 = "2.책 특징 :"+feature +"3.책 가격 :"+price;
+						
+						var details_3 = "1.세이펜 제공 여부:"+pen+"2.전집 수상 여부"+prize+"3.Qrcode 제공 여부:"+qrCode+"4.비디오 제공 여부:"+video;
 						
 						 //$('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+details+ '</div>').appendTo($('.mCSB_container')).addClass('new'); 
 
 						if(imgUrl != null){
 							$('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure><img src="'+imgUrl+'" style="max-width: 100%; height: auto;"></div>').appendTo($('.mCSB_container')).addClass('new');
 						}
-						printMessage("1.책 이름 :"+bookName + "2.책 요약 :" + summary + "3.대상 연령 :"+minAge+"~"+maxAge,"bot");
 						
-						var dynamicTag = "<div class='list'><input type='button' id='tmpButton"+ index +"' value='구성 및 가격'/></div>";
+						printMessage("1.책 이름 :"+bookName,"bot");
+						printMessage("2.책 요약 :" + summary,"bot");
+						printMessage("3.대상 연령 :"+minAge+"~"+maxAge,"bot");
+						
+						var dynamicTag = "<div class='list'><input type='button' id='tmpButton"+ index +"' value='구성'/></div>";
 			 			$(dynamicTag).appendTo($('.mCSB_container'));
 			 			$(document).on('click','#tmpButton'+ index,function(){
 			 				printMessage(details_1,"bot");
 			 			})
 			 			index ++;
 			 			
-			 			var dynamicTag = "<div class='list'><input type='button' id='tmpButton"+ index +"' value='추가 정보'/></div>";
+			 			var dynamicTag = "<div class='list'><input type='button' id='tmpButton"+ index +"' value='책 특징 및 가격'/></div>";
 			 			$(dynamicTag).appendTo($('.mCSB_container'));
 			 			$(document).on('click','#tmpButton'+ index,function(){
 			 				printMessage(details_2,"bot");
+			 			})
+			 			index ++;
+			 			
+			 			var dynamicTag = "<div class='list'><input type='button' id='tmpButton"+ index +"' value='추가 정보'/></div>";
+			 			$(dynamicTag).appendTo($('.mCSB_container'));
+			 			$(document).on('click','#tmpButton'+ index,function(){
+			 				printMessage(details_3,"bot");
 			 			})
 			 			index++;
 			 			
 					    updateScrollbar();
 
-					    printMessage("가까운 지점에 대한 정보를 알려드릴까요?","bot");
-					    
-						updateScrollbar();
 					}
+					 printMessage("가까운 지점에 대한 정보를 알려드릴까요?","bot");
 				  }
 				}
 			})
