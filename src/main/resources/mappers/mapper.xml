@@ -48,6 +48,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	from tbl_product
 	where upperCode =#{user.id} and <![CDATA[minAge<=#{user.age}]]> and <![CDATA[maxAge>=#{user.age}]]>
 </select>
+<select id="getBranchInfo" parameterType="hashmap" resultType="Branch">
+
+select branchName,branchAddrf,branchAddrs,branchTelFront,branchTelMid,branchTelLast 
+from tblBranch
+where broadLocation =#{location.broadLocation} and narrowLocation =#{location.narrowLocation}
+</select>
 
 
 

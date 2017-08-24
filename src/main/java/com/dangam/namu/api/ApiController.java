@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.dangam.namu.api.dto.Age;
 import com.dangam.namu.api.dto.Gender;
 import com.dangam.namu.api.dto.Inbi;
+import com.dangam.namu.api.dto.Location;
 import com.dangam.namu.api.dto.Preference;
 import com.dangam.namu.api.dto.Sub;
 import com.dangam.namu.api.dto.Test;
@@ -123,7 +124,21 @@ public class ApiController {
 	  result.put("contents", apiService.getBookByAgeAndUid(map));
 	  return ResponseEntity.ok(result);
   }
-  
+  @GetMapping("/getBranchInfo")
+  @ResponseBody
+  public ResponseEntity<Map<String, Object>> getBookByAgeAndUid(
+		  @RequestParam("value_1") String broadLocation, @RequestParam("value_2") String narrowLocation)throws Exception
+  {
+	  Map<String, Object> map = new HashMap<String, Object>();
+	  Location location = new Location();
+	  location.setBroadLocation(broadLocation);
+	  location.setNarrowLocation(narrowLocation);
+	  
+	  map.put("location", location);
+	  Map<String, Object> result = new  HashMap<String, Object>();
+	  result.put("contents", apiService.getBranchInfo(map));
+	  return ResponseEntity.ok(result);
+  }
   
   @GetMapping("/jsonTest")
   @ResponseBody
