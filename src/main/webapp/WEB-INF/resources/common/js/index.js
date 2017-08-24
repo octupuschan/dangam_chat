@@ -38,16 +38,6 @@ function initMessage() {
 		  $('.message.loading').remove();
 		  $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+initMessage+ '</div>').appendTo($('.mCSB_container')).addClass('new');
 		  updateScrollbar();
-
-	  if ($('.message-input').val() != '') {
-	    return false;
-	  }
-	  $('<div class="message loading new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure><span></span></div>').appendTo($('.mCSB_container'));
-	  updateScrollbar();
-	  var initMessage = "안녕하세요.아람 북스의 전집을 추천하고,소개해주는 아람봇이라고 합니다. 책을 추천하기 위해 몇가지 질문을 드리겠습니다.책 추천을 받기 원하신다면 <시작>이라고 입력해주세요!";
-	  $('.message.loading').remove();
-	  $('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+initMessage+ '</div>').appendTo($('.mCSB_container')).addClass('new');
-	  updateScrollbar();
 }
 
 
@@ -133,8 +123,6 @@ function getJsonFromInbi(msg,id){
  		data: {value : msg},
  		dataType: 'JSON',
  		success: function (output){
- 
- 			
  			printMessage(output.contents.data.message, output.id); //그냥 inbi의 텍스트(not uiScript)
  			if(output.contents.data.uiScript != null){
  				if(output.contents.data.uiScript.uiScript.options[0].id == "DB"){ //db에서 데이터 꿀어와야할지말지?? 
@@ -160,6 +148,7 @@ function insertMessage() {
 		$('.list').remove();
 		$('.message.message-personal.new').remove();
 	}
+
 	var id = "user";
 	printMessage(msg,id);
 	getJsonFromInbi(msg,id);
@@ -172,9 +161,7 @@ function insertMessage() {
 function getLocation() {
 	  if (navigator.geolocation) { //
 	    navigator.geolocation.getCurrentPosition(function(position) {
-	    	alert(position.coords.latitude +","+position.coords.longitude);	
-	    	return getAddress(position.coords.latitude,position.coords.longitude);
-	      
+	    	getAddress(position.coords.latitude,position.coords.longitude);
 	    }, function(error) {
 	      console.error(error);
 	    }, {
@@ -196,22 +183,38 @@ function getAddress(lat, lgt){
     	data:{y : lat, x : lgt, appkey : key},
     	dataType: 'JSON',
  		success: function (output){
- 			var mainCity = output.documents[0].address.region_1depth_name;
- 			var subCity = output.documents[0].address.region_1depth_name;
+ 			//var mainCity = output.documents[0].address.region_1depth_name;
+ 			//var subCity = output.documents[0].address.region_1depth_name;
+ 			var mainCity = "서울";
+ 			var subCity = "강북구";
  			
  			$.ajax({
  				url: '/getBranchInfo',
  				type: 'GET',
  				data:{value_1 : mainCity, value_2 : subCity},
  				dataType: 'JSON',
- 				success: function (output){
- 					//printMessage(,"bot");
+ 				success: function (output){ 
+ 					var dynamicTag = 
+ 						"<div class='list'>" +
+ 							"<table>" +
+ 								"<tr>" +
+ 									"<th>지점명</th><th>주소</th><th>연락처</th>" +
+ 									"<tr>" +
+ 										"<td>"+output.contents[0].branchName+"</td>" +
+ 										"<td>"+output.contents[0].branchAddrs+"</td>" +
+ 										"<td>0"+output.contents[0].branchTelFront+"-"+output.contents[0].branchTelMid+"-"+output.contents[0].branchTelLast+"</td>" +
+ 									"</tr>"+
+ 								"</tr>" +
+ 							"</table>" +
+ 						"</div>";
+ 					$(dynamicTag).appendTo($('.mCSB_container'));
+ 					updateScrollbar();
+ 					j++;
  				}
  			})
  		}
 	})		
 }
-
 
 $('.message-submit').click(function() {
   insertMessage();
@@ -382,8 +385,10 @@ $(document).on('click','#btn13',function(){
 			 				printMessage(details_2,"bot");
 			 			})
 			 			index++;
-						
-						 updateScrollbar();
+			 			
+			 			getLocation();
+			 			
+			 			updateScrollbar();
 					}
 				}				
 		})		
@@ -604,6 +609,8 @@ function parentPreferenceEvent(x){
 			 			})
 			 			index++;
 						
+			 			getLocation();
+			 			
 						updateScrollbar();
 					}
 					updateScrollbar();
@@ -717,11 +724,9 @@ function preferenceEvent(x) {
 			 			
 					    updateScrollbar();
 
-						$('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+output.contents[i].bookName+ '</div>').appendTo($('.mCSB_container')).addClass('new');
-						$('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure><img src="'+imgUrl+'" width:80%;height:auto/></div>').appendTo($('.mCSB_container')).addClass('new');
-						
-						 updateScrollbar();
-
+					    getLocation();
+					    
+						updateScrollbar();
 					}
 				  }
 				}
