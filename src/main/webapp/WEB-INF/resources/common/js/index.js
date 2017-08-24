@@ -349,10 +349,10 @@ $(document).on('click','#btn13',function(){
 							writer ="";
 						
 						var price = output.contents[i].price;
+				
+						var details_1 = "1.책 구성 요소 :" +component +'\n'+ "2.책 특징 :"+feature+'\n'+"3.책 가격 :"+price ;
 						
-						var details_1 = "1.책 구성 요소 :" +component +"&#10;"+ "2.책 특징 :"+feature+"&#10;"+"3.책 가격 :"+price ;
-						
-						var details_2 = "1.세이펜 제공 여부:"+pen+"&#10;"+"2.전집 수상 여부"+prize+"&#10;"+"3.Qrcode 제공 여부:"+qrCode+"&#10;"+"4.비디오 제공 여부:"+video;
+						var details_2 = "1.세이펜 제공 여부:"+pen+"\n"+"2.전집 수상 여부"+prize+"\n"+"3.Qrcode 제공 여부:"+qrCode+"&#10;"+"4.비디오 제공 여부:"+video;
 						
 						 //$('<div class="message new"><figure class="avatar"><img src="/resources/common/mosaLiS2uB.jpg" /></figure>'+details+ '</div>').appendTo($('.mCSB_container')).addClass('new'); 
 						

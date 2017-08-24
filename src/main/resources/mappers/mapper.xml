@@ -57,12 +57,5 @@ where broadLocation =#{location.broadLocation} and narrowLocation =#{location.na
 
 
 
-<select id="getBranchInfo" parameterType="hashmap" resultType="Branch">
-
-select branchName,branchAddrf,branchAddrs,branchTelFront,branchTelMid,branchTelLast 
-from tblBranch
-where broadLocation =#{location.broadLocation} and narrowLocation =#{location.narrowLocation}
-</select>
-
 
 </mapper>
