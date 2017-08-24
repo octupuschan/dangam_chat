@@ -54,7 +54,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 select branchName,branchAddrf,branchAddrs,branchTelFront,branchTelMid,branchTelLast 
 from tblBranch
-where broadLocation =${location.broadLocation} and narrowLocation =${location.narrowLocation}
+where broadLocation =#{location.broadLocation} and narrowLocation =#{location.narrowLocation}
 </select>
 
 
