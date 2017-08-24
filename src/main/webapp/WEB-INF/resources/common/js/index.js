@@ -123,14 +123,18 @@ function getJsonFromInbi(msg,id){
  		data: {value : msg},
  		dataType: 'JSON',
  		success: function (output){
- 			printMessage(output.contents.data.message, output.id); //그냥 inbi의 텍스트(not uiScript)
- 			if(output.contents.data.uiScript != null){
- 				if(output.contents.data.uiScript.uiScript.options[0].id == "DB"){ //db에서 데이터 꿀어와야할지말지?? 
- 					setTimeout(makeButtonByDB(output), 1000 + (Math.random() * 20) * 100);
- 				}
- 				else{
- 					setTimeout(makeButton(output), 1000 + (Math.random() * 20) * 100);
- 				}
+ 			if(output.contents.data.message == "위치"){
+ 				getLocation();
+ 			}else{
+ 				printMessage(output.contents.data.message, output.id); //그냥 inbi의 텍스트(not uiScript)
+ 	 			if(output.contents.data.uiScript != null){
+ 	 				if(output.contents.data.uiScript.uiScript.options[0].id == "DB"){ //db에서 데이터 꿀어와야할지말지?? 
+ 	 					setTimeout(makeButtonByDB(output), 1000 + (Math.random() * 20) * 100);
+ 	 				}
+ 	 				else{
+ 	 					setTimeout(makeButton(output), 1000 + (Math.random() * 20) * 100);
+ 	 				}
+ 	 			}
  			}
  		}
    })
@@ -194,6 +198,7 @@ function getAddress(lat, lgt){
  				data:{value_1 : mainCity, value_2 : subCity},
  				dataType: 'JSON',
  				success: function (output){ 
+ 					printMessage("현재 위치인 "+mainCity+" "+subCity+"주변 지점에 대한 정보입니다.","bot");
  					var dynamicTag = 
  						"<div class='list'>" +
  							"<table>" +
@@ -386,7 +391,7 @@ $(document).on('click','#btn13',function(){
 			 			})
 			 			index++;
 			 			
-			 			getLocation();
+			 			printMessage("가까운 지점에 대한 정보를 알려드릴까요?","bot");
 			 			
 			 			updateScrollbar();
 					}
@@ -609,7 +614,7 @@ function parentPreferenceEvent(x){
 			 			})
 			 			index++;
 						
-			 			getLocation();
+			 			printMessage("가까운 지점에 대한 정보를 알려드릴까요?","bot");
 			 			
 						updateScrollbar();
 					}
@@ -724,7 +729,7 @@ function preferenceEvent(x) {
 			 			
 					    updateScrollbar();
 
-					    getLocation();
+					    printMessage("가까운 지점에 대한 정보를 알려드릴까요?","bot");
 					    
 						updateScrollbar();
 					}
